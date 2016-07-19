@@ -4,7 +4,11 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Blank</h1>
+                    <h1 class="page-header">Register Administrator</h1>
+                    <?php
+                    echo $this->session->flashdata('error');
+                    echo $this->session->flashdata('success');
+                    ?>
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Register
@@ -16,7 +20,7 @@
                             <div class="form-group">
                                 <label for="firstname">Firstname</label>
                                 <?php
-                                echo form_error('firstname', '<small class="text-red">', '</small>');
+                                echo form_error('firstname', '<br><small class="text-red">', '</small>');
                                 $admin_firstname = array(
                                     'type' => 'text',
                                     'name' => 'firstname',
@@ -32,7 +36,7 @@
                             <div class="form-group">
                                 <label for="lastname">Lastname</label>
                                 <?php
-                                echo form_error('lastname', '<small class="text-red">', '</small>');
+                                echo form_error('lastname', '<br><small class="text-red">', '</small>');
                                 $admin_lastname = array(
                                     'type' => 'text',
                                     'name' => 'lastname',
@@ -48,7 +52,7 @@
                             <div class="form-group">
                                 <label for="username">Username</label>
                                 <?php
-                                echo form_error('username', '<small class="text-red">', '</small>');
+                                echo form_error('username', '<br><small class="text-red">', '</small>');
                                 $admin_username = array(
                                     'type' => 'text',
                                     'name' => 'username',
@@ -64,7 +68,7 @@
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <?php
-                                echo form_error('password', '<small class="text-red">', '</small>');
+                                echo form_error('password', '<br><small class="text-red">', '</small>');
                                 $admin_password = array(
                                     'type' => 'password',
                                     'name' => 'password',
@@ -79,7 +83,7 @@
                             <div class="form-group">
                                 <label for="password_conf">Confirm Password</label>
                                 <?php 
-                                echo form_error('password_conf', '<small class="text-red">', '</small>');
+                                echo form_error('password_conf', '<br><small class="text-red">', '</small>');
                                 $admin_password_conf = array(
                                     'type' => 'password',
                                     'name' => 'password_conf',
@@ -92,14 +96,15 @@
                             
                             <!-- for gender -->
                             <div class="form-group">
+                                <label for="gender">Gender</label>
                                 <?php
-                                echo form_error('gender', '<small class="text-red">', '</small>');
+                                echo form_error('gender', '<br><small class="text-red">', '</small>');
                                 $admin_gender = array(
                                     '' => 'Select Gender',
                                     '1' => 'Male',
                                     '2' => 'Female'
                                 );
-                                echo form_dropdown('gender', $admin_gender, '', 'class="form-control"');
+                                echo form_dropdown('gender', $admin_gender, '', 'class="form-control" id="gender"');
                                 ?>
                             </div>
                             

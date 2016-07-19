@@ -6,17 +6,18 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
+                        <?php echo $this->session->flashdata('error'); ?>
                         <?php echo form_open(base_url().'login-exec'); ?>
                             <fieldset>
                                 <div class="form-group">
                                     <?php 
-                                    echo form_error('email', '<small class="text-red">', '</small>');
+                                    echo form_error('username', '<small class="text-red">', '</small>');
                                     $login_email = array(
                                         'type' => 'text',
-                                        'name' => 'email',
+                                        'name' => 'username',
                                         'value' => set_value('email'),
                                         'class' => 'form-control',
-                                        'placeholder' => 'E-mail',
+                                        'placeholder' => 'Username',
                                         'autofocus' => ''
                                     ); 
                                     echo form_input($login_email);
@@ -39,10 +40,11 @@
                                     <?php 
                                     echo form_error('role', '<small class="text-red">', '</small>');
                                     $login_role = array(
-                                        '1' => 'Accounting',
-                                        '2' => 'Admin'
+                                        '' => 'Select Role',
+                                        '1' => 'Administrator',
+                                        '2' => 'Accounting'
                                     );
-                                    echo form_dropdown('role', $login_role, '1', 'class="form-control"');
+                                    echo form_dropdown('role', $login_role, '', 'class="form-control"');
                                     ?>
                                 </div>
                                 <div class="checkbox">

@@ -10,10 +10,13 @@ class AdminController extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
+        $this->load->model('SystemUser');
+        $this->load->model('SystemUserLog');
+        $this->load->library('alert');
     }
     
     /*
-     * Regiter admin user
+     * Register admin user
      * @param 
      * @return void
      */
@@ -71,6 +74,38 @@ class AdminController extends CI_Controller {
         $this->form_validation->set_rules($validate);
         if ($this->form_validation->run() == false) {
             $this->register();
+        } else {
+            $firstname = trim($this->input->post('firstname'));
+            $lastname = trim($this->input->post('lastname'));
+            $username = trim($this->input->post('username'));
+            $password = $this->input->post('password');
+            $gender = $this->input->post('gender');
+            $admin_data = array(
+                'user_firstname' => $firstname,
+                'user_lastname' => $lastname,
+                'user_username' => $username,
+                'user_password' => password_hash($password, PASSWORD_BCRYPT),
+                'user_gender' => $gender,
+                'user_role' => 1
+            );
+            
+            $insert = $this->SystemUser->insert($admin_data);
+            if (!$insert['registered']) {
+                $this->session->set_flashdata('error', $this->alert->show('Cannot register account!', 0));
+            } else {
+                $admin_data_log = array(
+                    'user_id' => $insert['registered_id'],
+                    'user_created' => date('Y-m-d H:i:s')
+                );
+                $insert_log = $this->SystemUserLog->insert($admin_data_log);
+                if (!$insert_log['inserted']) {
+                    $this->session->set_flashdata('error', $this->alert->show('Cannot complete account registration!', 0));
+                } else {
+                    $this->session->set_flashdata('success', $this->alert->show('Admin user added success!', 1));
+                }
+            }
+            redirect(base_url().'admin/register-admin');
+            exit();
         }
     }
     
