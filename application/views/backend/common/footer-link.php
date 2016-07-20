@@ -9,6 +9,9 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="<?php echo base_url(); ?>js/backend/sb-admin-2.js"></script>
+    
+    <!-- Custom Script -->
+    <script src="<?php echo base_url(); ?>js/backend/custome.js"></script>
 
 </body>
 

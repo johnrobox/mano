@@ -8,16 +8,32 @@
 
 class LoginController extends CI_Controller {
     
+    // common login error message
     private $login_error_msg = 'Invalid Email / Password';
     
     public function __construct() {
         parent::__construct();
+        if ($this->session->has_userdata('system_logged_in') && $this->session->userdata('system_logged_in')) {
+            if ($this->session->userdata('system_logged_in')['SYSTEM_LOGIN_ROLE'] == 1) {
+                redirect(base_url().'admin/dashboard');
+            } else if ($this->session->userdata('system_logged_in')['SYSTEM_LOGIN_ROLE'] == 2) {
+                redirect(base_url().'admin/accounting');
+            } else {
+                redirect(base_url().'logout');
+            }
+            exit();
+        }
         $this->load->model('SystemUser');
         $this->load->model('SystemUserLog');
         $this->load->library('alert');
         $this->load->library('generate');
     }
     
+    /*
+     * Index (login page)
+     * @param 
+     * @return void
+     */
     public function index() {
         $data = array(
             'page_title' => 'Login'
@@ -72,7 +88,7 @@ class LoginController extends CI_Controller {
                 } else {
                     $account_role = $check_username['data'][0]->user_role;
                     if ($account_role != $role) {
-                        $this->session->set_flashdata('error', $this->alert->show($this->login_error_msg .' role', 0));
+                        $this->session->set_flashdata('error', $this->alert->show($this->login_error_msg, 0));
                         redirect(base_url().'login');
                         exit();
                     } else {

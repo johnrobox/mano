@@ -54,8 +54,12 @@ $route['default_controller'] = 'welcome';
 $route['login'] = 'LoginController';
 $route['login-exec'] = 'LoginController/login_exec';
 
+$route['logout'] = 'LogoutController';
+
 // for system administrator routing
 $route['admin/dashboard'] = 'backends/admin/DashboardController';
+
+$route['admin/user-change-profile'] = 'backends/admin/AdminUserController/change_profile';
 
 $route['admin/register-admin'] = 'backends/admin/AdminController/register';
 $route['admin/register-admin-exec'] = 'backends/admin/AdminController/register_exec';
