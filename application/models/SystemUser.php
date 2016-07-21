@@ -31,6 +31,17 @@ class SystemUser extends CI_Model {
     }
     
     /*
+     * update by id
+     * @param $id (int), $data (array)
+     * @return $response (array)
+     */
+    public function update_by_id($id, $data) {
+        $this->db->where('id', $id);
+        $response['updated'] = ($this->db->update($this->table, $data)) ? true : false;
+        return $response;
+    }
+    
+    /*
      * Get by username
      * @param $username (String)
      * @return 

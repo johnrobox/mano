@@ -35,6 +35,14 @@
             }
 
         })
+        
+        
+        // change / update password starts here
+        $('#changePasswordButton').click(function(){
+            $('#UpdatePasswordModal').modal('show');
+            
+        });
+        
     });
     
     var loadFile = function(event) {

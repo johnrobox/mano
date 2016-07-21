@@ -59,6 +59,8 @@ $route['logout'] = 'LogoutController';
 // for system administrator routing
 $route['admin/dashboard'] = 'backends/admin/DashboardController';
 
+$route['admin/admin-settings'] = 'backends/admin/AdminUserController/settings';
+$route['admin/admin-settings-exec'] = 'backends/admin/AdminUserController/settings_exec';
 $route['admin/user-change-profile'] = 'backends/admin/AdminUserController/change_profile';
 
 $route['admin/register-admin'] = 'backends/admin/AdminController/register';

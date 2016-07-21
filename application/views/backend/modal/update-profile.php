@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-xs-4 text-center">
                         <div class="alert alert-info text-center">
-                            <img src="" id="output" class="img-responsive img-circle" style="height: 100px; width: 100px; border: 1px solid black"/> 
+                            <img src="<?php echo base_url().'images/admin/uploads/'.$account[0]->user_image; ?>" id="output" class="img-responsive img-circle" style="height: 100px; width: 100px; border: 1px solid black"/> 
                         </div>
                     </div>
                     <?php
@@ -36,8 +36,6 @@
                     echo form_close();
                     ?>
                 </div>
-                
-                 
             </div>
             <div class="modal-footer">
                 <?php
