@@ -1,12 +1,12 @@
 <?php
 
 /* 
- * AdminController
+ * Accounting Controller
  * Author : Robert
- * Date : July 16, 2016
+ * Date : July 25 2016
  */
 
-class AdminController extends CI_Controller {
+class AccountingController extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
@@ -18,25 +18,25 @@ class AdminController extends CI_Controller {
     }
     
     /*
-     * Register admin user
-     * @param 
+     * register
+     * @params
      * @return void
      */
     public function register() {
         $data = array(
-            'page_title' => 'Register Admin User',
+            'page_title' => 'Register Accounting User',
             'account' => $this->accountInfo
         );
         $this->load->view('backend/common/header-link', $data);
         $this->load->view('backend/admin/navbar-top-link');
         $this->load->view('backend/admin/navbar-side-link');
-        $this->load->view('backend/admin/register-admin');
+        $this->load->view('backend/admin/register-accounting-user');
         $this->load->view('backend/common/footer-link');
     }
     
     /*
-     * Register admin user exec
-     * @param 
+     * register exec
+     * @params 
      * @return void
      */
     public function register_exec() {
@@ -88,7 +88,7 @@ class AdminController extends CI_Controller {
                 'user_username' => $username,
                 'user_password' => password_hash($password, PASSWORD_BCRYPT),
                 'user_gender' => $gender,
-                'user_role' => 1
+                'user_role' => 2
             );
             
             $insert = $this->SystemUser->insert($admin_data);
@@ -106,30 +106,11 @@ class AdminController extends CI_Controller {
                     $this->session->set_flashdata('success', $this->alert->show('Admin user added success!', 1));
                 }
             }
-            redirect(base_url().'admin/register-admin');
+            redirect(base_url().'admin/register-accounting-user');
             exit();
         }
     }
     
-    /*
-     * July 25 2016
-     * admin list
-     * @params
-     * @return vaoid
-     */
-    public function admin_list() { 
-        $data = array(
-            'page_title' => 'Admin List',
-            'account' => $this->accountInfo,
-            'all_admin' => $this->SystemUser->get_all_join()
-        );
-        
-        $this->load->view('backend/common/header-link', $data);
-        $this->load->view('backend/admin/navbar-top-link');
-        $this->load->view('backend/admin/navbar-side-link');
-        $this->load->view('backend/admin/admin-list');
-        $this->load->view('backend/common/footer-link');
-    }
     
 }
 

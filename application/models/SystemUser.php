@@ -11,6 +11,33 @@ class SystemUser extends CI_Model {
     public function __construct() {
         parent::__construct();
         $this->table = 'system_users';
+        $this->table_joined = 'system_user_logs';
+    }
+    
+    /*
+     * get all join
+     * @param 
+     * @return object
+     */
+    public function get_all_join() {
+        $field = array(
+            'user_firstname',
+            'user_lastname',
+            'user_username',
+            'user_gender',
+            'user_image',
+            'user_created',
+            'user_modified',
+            'user_lastlogin',
+            'user_lastlogout',
+            'user_flag',
+            'user_status'
+        );
+        $this->db->select($field);
+        $this->db->from($this->table);
+        $this->db->join($this->table_joined, $this->table_joined.'.user_id = '.$this->table.'.id');
+        $query = $this->db->get();
+        return $query->result();
     }
     
     /*
