@@ -121,7 +121,7 @@ class AdminController extends CI_Controller {
         $data = array(
             'page_title' => 'Admin List',
             'account' => $this->accountInfo,
-            'all_admin' => $this->SystemUser->get_all_join()
+            'all_admin' => $this->SystemUser->get_all_join(1)
         );
         
         $this->load->view('backend/common/header-link', $data);

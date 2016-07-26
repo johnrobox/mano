@@ -111,6 +111,25 @@ class AccountingController extends CI_Controller {
         }
     }
     
+    /*
+     * list
+     * @params 
+     * @return void
+     */
+    public function accounting_list() {
+        $data = array(
+            'page_title' => 'Admin List',
+            'account' => $this->accountInfo,
+            'all_admin' => $this->SystemUser->get_all_join(1)
+        );
+        
+        $this->load->view('backend/common/header-link', $data);
+        $this->load->view('backend/admin/navbar-top-link');
+        $this->load->view('backend/admin/navbar-side-link');
+        $this->load->view('backend/admin/admin-list');
+        $this->load->view('backend/common/footer-link');
+    }
+    
     
 }
 

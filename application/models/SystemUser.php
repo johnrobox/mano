@@ -16,10 +16,10 @@ class SystemUser extends CI_Model {
     
     /*
      * get all join
-     * @param 
+     * @param $role (int)
      * @return object
      */
-    public function get_all_join() {
+    public function get_all_join($role) {
         $field = array(
             'user_firstname',
             'user_lastname',
@@ -35,6 +35,7 @@ class SystemUser extends CI_Model {
         );
         $this->db->select($field);
         $this->db->from($this->table);
+        $this->db->where('user_role', $role);
         $this->db->join($this->table_joined, $this->table_joined.'.user_id = '.$this->table.'.id');
         $query = $this->db->get();
         return $query->result();

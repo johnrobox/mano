@@ -69,6 +69,7 @@ $route['admin/admin-list'] = 'backends/admin/AdminController/admin_list';
 
 $route['admin/register-accounting-user'] = 'backends/admin/AccountingController/register';
 $route['admin/register-accounting-user-exec'] = 'backends/admin/AccountingController/register_exec';
+$route['admin/accounting-user-list'] = 'backends/admin/AccountingController/accounting_list';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
