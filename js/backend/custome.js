@@ -3,6 +3,7 @@
  var base_url = 'http://practice.com/mano/';
  
  $(document).ready(function() {
+     
         $('#update').click(function(){
             var res_field = document.getElementById("profile_image").value;
             var extension = res_field.substr(res_field.lastIndexOf('.') + 1).toLowerCase();
@@ -42,7 +43,7 @@
             $('#UpdatePasswordModal').modal('show');
             
         });
-        
+                
     });
     
     var loadFile = function(event) {
@@ -56,4 +57,70 @@
     
     function isEmpty(str) {
         return (!str || 0 === str.length);
+    }
+    
+    
+    /*
+     * Change status
+     */
+    function changeStatus(id, status, url) {
+        $('#ChangeStatus').modal('show');
+        var header_text = (status == 0) ? 'Enable' : 'Disable';
+        var sub_url;
+        if (url == 'accounting') {
+            sub_url = 'accounting-user-change-status';
+        } else if (url == 'admin') {
+            sub_url = 'admin/';
+        }
+        $('#headerText').text(header_text);
+        $('#contentText').text('Are you sure to ' + header_text + ' the account ?');
+        $('#changeOkayButton').click(function(){
+            $.ajax({
+                url : base_url + 'admin/' + sub_url,
+                dataType : 'text',
+                type : 'post',
+                data : {
+                    id : id,
+                    status : status
+                },
+                success : function(data) {
+                    location.reload();
+                },
+                error : function() {
+                    console.log('error');
+                }
+            })
+        })
+    }
+    
+    
+    /*
+     * Delete everything
+     */
+    function deleteSomething(id, url) {
+        $('#deleteModal').modal('show');
+        $('#deleteOkayButton').click(function() {
+            var sub_url;
+            if (url == 'accounting') {
+                sub_url = 'accounting-user-delete';
+            } else {
+                sub_url = '';
+            }
+            
+            $.ajax({
+                url : base_url + 'admin/' + sub_url,
+                dateType : 'text',
+                type : 'post',
+                data : {
+                    id : id
+                }, 
+                success : function(data) {
+                    location.reload();
+                },
+                error : function(error) {
+                    
+                }
+            })
+            
+        })
     }

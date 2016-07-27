@@ -21,6 +21,7 @@ class SystemUser extends CI_Model {
      */
     public function get_all_join($role) {
         $field = array(
+            'system_users.id',
             'user_firstname',
             'user_lastname',
             'user_username',
@@ -39,6 +40,17 @@ class SystemUser extends CI_Model {
         $this->db->join($this->table_joined, $this->table_joined.'.user_id = '.$this->table.'.id');
         $query = $this->db->get();
         return $query->result();
+    }
+    
+    /*
+     * delete by id
+     * @param $id (id)
+     * @return $response (array)
+     */
+    public function delete_by_id($id) {
+        $this->db->where('id', $id);
+        $response['deleted'] = ($this->db->delete($this->table)) ? true : false;
+        return $response;
     }
     
     /*

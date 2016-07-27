@@ -54,5 +54,29 @@ class SystemUserLog extends CI_Model {
         return $response;
     }
     
+    
+    /*
+     * update status by user id
+     * @params $id(int) $status (int)
+     * @return $response (array)
+     */
+    public function update_status_by_user_id($id, $status) {
+        $this->db->where('user_id', $id);
+        $query = $this->db->update($this->table, array('user_status' => $status));
+        $response['updated'] = ($query) ? true : false;
+        return $response;
+    }
+    
+    /*
+     * delete by user id
+     * @param $id (int)
+     * $return $response (array)
+     */
+    public function delete_by_user_id($id) {
+        $this->db->where('user_id', $id);
+        $response['deleted'] = ($this->db->delete($this->table)) ? true : false;
+        return $response;
+    }
+    
 }
 

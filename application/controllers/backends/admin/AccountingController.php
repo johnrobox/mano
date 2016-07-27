@@ -120,16 +120,50 @@ class AccountingController extends CI_Controller {
         $data = array(
             'page_title' => 'Admin List',
             'account' => $this->accountInfo,
-            'all_admin' => $this->SystemUser->get_all_join(1)
+            'all_admin' => $this->SystemUser->get_all_join(2)
         );
         
         $this->load->view('backend/common/header-link', $data);
         $this->load->view('backend/admin/navbar-top-link');
         $this->load->view('backend/admin/navbar-side-link');
-        $this->load->view('backend/admin/admin-list');
+        $this->load->view('backend/admin/accounting-users-list');
+        $this->load->view('backend/modal/change-status');
+        $this->load->view('backend/modal/delete');
         $this->load->view('backend/common/footer-link');
     }
     
+    /*
+     * change status
+     * @params 
+     * @return void
+     */
+    public function change_status() {
+        $id = $this->input->post('id');
+        $current_status = $this->input->post('status');
+        $new_status = ($current_status == 0) ? 1 : 0;
+        $change = $this->SystemUserLog->update_status_by_user_id($id, $new_status);
+        if (!$change['updated']) {
+            $this->session->set_flashdata('error', $this->alert->show('Cannot change status!', 0));
+        } else {
+            $this->session->set_flashdata('success', $this->alert->show('Change status success!', 1));
+        }
+    }
+    
+    /*
+     * delete
+     * @params 
+     * @return void
+     */
+    public function delete() {
+        $id = $this->input->post('id');
+        $delete = $this->SystemUser->delete_by_id($id);
+        if (!$delete['deleted']) {
+            $this->session->set_flashdata('error', $this->alert->show('Cannot delete user!', 0));
+        } else {
+            $this->SystemUserLog->delete_by_user_id($id);
+            $this->session->set_flashdata('success', $this->alert->show('Delete user success!', 1));
+        }
+    }
     
 }
 

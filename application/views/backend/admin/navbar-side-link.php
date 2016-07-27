@@ -77,14 +77,15 @@
                             <!-- /.nav-second-level -->
                         </li>
                         
+                        
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Employees<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Flot Charts</a>
+                                    <a href="<?php echo base_url();?>admin/register-employee">Register</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Morris.js Charts</a>
+                                    <a href="morris.html">List</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
