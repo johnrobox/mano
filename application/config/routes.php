@@ -74,6 +74,12 @@ $route['admin/accounting-user-change-status'] = 'backends/admin/AccountingContro
 $route['admin/accounting-user-delete'] = 'backends/admin/AccountingController/delete';
 
 $route['admin/register-employee'] = 'backends/admin/EmployeeController/register';
+$route['admin/register-employee-exec'] = 'backends/admin/EmployeeController/register_exec';
+$route['admin/employee-list'] = 'backends/admin/EmployeeController/employee_list';
+$route['admin/employee-change-status'] = 'backends/admin/EmployeeController/change_status';
+$route['admin/employee-delete'] = 'backends/admin/EmployeeController/delete';
+$route['admin/single-employee'] = 'backends/admin/EmployeeController/single';
+$route['admin/update-employee'] = 'backends/admin/EmployeeController/update';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

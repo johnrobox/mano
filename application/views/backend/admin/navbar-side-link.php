@@ -85,7 +85,7 @@
                                     <a href="<?php echo base_url();?>admin/register-employee">Register</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">List</a>
+                                    <a href="<?php echo base_url();?>admin/employee-list">List</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

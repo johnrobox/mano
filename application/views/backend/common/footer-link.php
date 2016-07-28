@@ -1,5 +1,4 @@
-    <!-- jQuery -->
-    <script src="<?php echo base_url(); ?>js/backend/jquery.min.js"></script>
+    
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<?php echo base_url(); ?>js/backend/bootstrap.min.js"></script>
@@ -12,7 +11,7 @@
     
     <!-- Custom Script -->
     <script src="<?php echo base_url(); ?>js/backend/custome.js"></script>
-
+    
 </body>
 
 </html>

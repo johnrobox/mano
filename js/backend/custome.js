@@ -43,6 +43,7 @@
             $('#UpdatePasswordModal').modal('show');
             
         });
+        
                 
     });
     
@@ -64,6 +65,7 @@
      * Change status
      */
     function changeStatus(id, status, url) {
+        
         $('#ChangeStatus').modal('show');
         var header_text = (status == 0) ? 'Enable' : 'Disable';
         var sub_url;
@@ -71,10 +73,12 @@
             sub_url = 'accounting-user-change-status';
         } else if (url == 'admin') {
             sub_url = 'admin/';
+        } else if (url == 'employee') {
+            sub_url = 'employee-change-status';
         }
         $('#headerText').text(header_text);
         $('#contentText').text('Are you sure to ' + header_text + ' the account ?');
-        $('#changeOkayButton').click(function(){
+        $('#changeOkayButton').unbind().click(function(){
             $.ajax({
                 url : base_url + 'admin/' + sub_url,
                 dataType : 'text',
@@ -99,17 +103,19 @@
      */
     function deleteSomething(id, url) {
         $('#deleteModal').modal('show');
-        $('#deleteOkayButton').click(function() {
+        $('#deleteOkayButton').unbind().click(function() {
             var sub_url;
             if (url == 'accounting') {
                 sub_url = 'accounting-user-delete';
+            } else if (url == 'employee') {
+                sub_url = 'employee-delete';
             } else {
                 sub_url = '';
             }
             
             $.ajax({
                 url : base_url + 'admin/' + sub_url,
-                dateType : 'text',
+                dataType : 'text',
                 type : 'post',
                 data : {
                     id : id
@@ -122,5 +128,78 @@
                 }
             })
             
+        })
+    }
+    
+    // update employee
+    function updateEmployee(id) {
+        $('#updateEmployeeModal').modal('show');
+        $.ajax({
+            url : base_url + 'admin/single-employee',
+            dataType : 'json',
+            type : 'post',
+            data : {
+                id : id
+            },
+            success : function(data) {
+                $('#firstname').val(data[0].employee_firstname);
+                $('#lastname').val(data[0].employee_lastname);
+                $('#address').val(data[0].employee_address);
+                $('#gender').val(data[0].employee_gender);
+                $('#birthdate').val(data[0].employee_birthdate);
+                $('#date_employed').val(data[0].employee_date_employed);
+                
+                $('#UpdateButton').unbind().click(function() {
+                    var msg = ' is required.';
+                    var firstname = $('#firstname').val();
+                    var lastname = $('#lastname').val();
+                    var address = $('#address').val();
+                    var gender = $('#gender').val();
+                    var birthdate = $('#birthdate').val();
+                    var date_employed = $('#date_employed').val();
+                    
+                    var firstname_err_val = (firstname == '') ? 'The Firstname' + msg : '';
+                    var lastname_err_val = (lastname == '') ? 'The Lastname' + msg : '';
+                    var address_err_val = (address == '') ? 'The Address' + msg : '';
+                    var gender_err_val = (gender == '') ? 'The Gender' + msg : '';
+                    var birth_err_val = (birthdate == '') ? 'The Birthdate' + msg : '';
+                    var employed_err_val = (date_employed == '') ? 'The date employed' + msg : '';
+                    
+                    $('#firstname_err').text(firstname_err_val);
+                    $('#lastname_err').text(lastname_err_val);
+                    $('#address_err').text(address_err_val);
+                    $('#gender_err').text(gender_err_val);
+                    $('#birth_err').text(birth_err_val);
+                    $('#employed_err').text(employed_err_val);
+                    if (firstname_err_val.length == 0 && lastname_err_val.length == 0 && address_err_val.length == 0 && gender_err_val.length == 0 && birth_err_val.length == 0 && employed_err_val.length == 0) {
+                        $.ajax({
+                            url : base_url + 'admin/update-employee',
+                            dataType : 'text',
+                            type : 'post',
+                            data : {
+                                id : id,
+                                firstname : firstname,
+                                lastname : lastname,
+                                address : address,
+                                gender : gender,
+                                birthdate : birthdate,
+                                date_employed : date_employed
+                            },
+                            success : function(data){
+                                location.reload();
+                            },
+                            error : function(error) {
+                                console.log('error');
+                            }
+                        })
+                    } else {
+                        console.log('error');
+                    }
+                    
+                })
+            },
+            error : function(error) {
+                
+            }
         })
     }
