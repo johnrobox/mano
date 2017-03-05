@@ -1,4 +1,14 @@
     
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+
 
     <!-- Bootstrap Core JavaScript -->
     <script src="<?php echo base_url(); ?>js/backend/bootstrap.min.js"></script>

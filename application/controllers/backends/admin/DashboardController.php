@@ -29,14 +29,15 @@ class DashboardController extends CI_Controller {
     public function index() {
         $data = array(
             'page_title' => 'Administrator Dashboard',
-            'account' => $this->accountInfo
+            'account' => $this->accountInfo,
+            'page_header' => 'Dashboard'
         );
-        $this->load->view('backend/common/header-link', $data);
-        $this->load->view('backend/admin/navbar-top-link');
-        $this->load->view('backend/admin/navbar-side-link');
-        $this->load->view('backend/admin/dashboard');
+        $this->load->view('backend/admin/default/header-link', $data);
+        $this->load->view('backend/admin/default/navbar-top-link');
+        $this->load->view('backend/admin/default/navbar-side-link');
+        $this->load->view('backend/admin/pages/dashboard');
         $this->load->view('backend/modal/update-profile');
-        $this->load->view('backend/common/footer-link');
+        $this->load->view('backend/admin/default/footer-link');
     }
     
 }

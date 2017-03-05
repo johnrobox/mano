@@ -156,3 +156,14 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
+        
+        
+    <!-- CONTENT IN EVERY PAGE BEGINS HERE -->  
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        <?php echo (isset($page_header)) ? $page_header : "Administrator Panel"; ?>
+                    </h1>

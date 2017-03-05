@@ -25,13 +25,14 @@ class AdminController extends CI_Controller {
     public function register() {
         $data = array(
             'page_title' => 'Register Admin User',
-            'account' => $this->accountInfo
+            'account' => $this->accountInfo,
+            'page_header' => 'Register Administrator'
         );
-        $this->load->view('backend/common/header-link', $data);
-        $this->load->view('backend/admin/navbar-top-link');
-        $this->load->view('backend/admin/navbar-side-link');
-        $this->load->view('backend/admin/register-admin');
-        $this->load->view('backend/common/footer-link');
+        $this->load->view('backend/admin/default/header-link', $data);
+        $this->load->view('backend/admin/default/navbar-top-link');
+        $this->load->view('backend/admin/default/navbar-side-link');
+        $this->load->view('backend/admin/pages/register-admin');
+        $this->load->view('backend/admin/default/footer-link');
     }
     
     /*
@@ -121,14 +122,15 @@ class AdminController extends CI_Controller {
         $data = array(
             'page_title' => 'Admin List',
             'account' => $this->accountInfo,
-            'all_admin' => $this->SystemUser->get_all_join(1)
+            'all_admin' => $this->SystemUser->get_all_join(1),
+            'page_header' => 'Administrator List'
         );
         
-        $this->load->view('backend/common/header-link', $data);
-        $this->load->view('backend/admin/navbar-top-link');
-        $this->load->view('backend/admin/navbar-side-link');
-        $this->load->view('backend/admin/admin-list');
-        $this->load->view('backend/common/footer-link');
+        $this->load->view('backend/admin/default/header-link', $data);
+        $this->load->view('backend/admin/default/navbar-top-link');
+        $this->load->view('backend/admin/default/navbar-side-link');
+        $this->load->view('backend/admin/pages/admin-list');
+        $this->load->view('backend/admin/default/footer-link');
     }
     
 }
