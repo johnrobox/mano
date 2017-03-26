@@ -16,7 +16,7 @@ class HomepageController extends CI_Controller {
 
     public function contactUs() {
     	// http://localhost/mano/index.php/HomepageController/contactUs
-    	$this->load->view("website/contact_us");
+    	$this->load->view("website/contact_us/contact-us");
     }
 
     public function aboutUs() {
