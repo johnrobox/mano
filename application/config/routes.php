@@ -52,7 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'HomepageController';
 
 $route["accounting"] = "accounting/HomepageController";
-$route["admin"] = "administrator/HomepageController";
+$route["admin"] = "administrator/LoginController";
 
 $route['hello'] = 'website/HomepageController';
 
