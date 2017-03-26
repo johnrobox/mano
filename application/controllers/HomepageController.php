@@ -5,9 +5,23 @@ class HomepageController extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
+
     }
     
     public function index() {
-        echo "hello world";
+    	$this->load->view("website/default/header");
+        $this->load->view("website/index");
+        $this->load->view("website/default/footer");
     }
+
+    public function contactUs() {
+    	// http://localhost/mano/index.php/HomepageController/contactUs
+    	$this->load->view("website/contact_us");
+    }
+
+    public function aboutUs() {
+    	// http://localhost/mano/index.php/HomepageController/aboutUs
+    	echo "hehehe";
+    }
+
 }
