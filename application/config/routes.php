@@ -56,6 +56,8 @@ $route["admin"] = "administrator/HomepageController";
 
 $route['hello'] = 'website/HomepageController';
 
+
+
 $route['login'] = 'LoginController';
 $route['login-exec'] = 'LoginController/login_exec';
 
