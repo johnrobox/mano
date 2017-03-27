@@ -1,39 +1,29 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); 
 
-/* 
- * Alert
- * bootstrap construct alert library
- * Author : Robert
- * Date : July 19 2016
- */
-
-class Alert {
+class Alert{
     
-    /*
-    * show message (call to use the alert message)
-    * @params :  $message (String), $status (int)
-    * @return : $constructed_message (String)
-    */
-    public function show($message, $status) {
-        if ($status == 1) {
-            $stat = 'success';
-            $icon = 'ok';
-        } else if ($status == 0) {
-            $stat = 'danger';
-            $icon = 'remove';
-        }
-        $constructed_message = $this->setup($stat, $icon).$message.'</div>';
-        return $constructed_message;
-    } 
+    public function dangerAlert($message){
+        $alert = $this->alertDiv('alert-danger', 'fa-times').$message.'</div>';
+        return $alert;
+    }
+    public function warningAlert($message){
+        $alert = $this->alertDiv('alert-warning', 'fa-warning').$message.'</div>';
+        return $alert;
+    }
+    public function successAlert($message){
+        $alert = $this->alertDiv('alert-success', 'fa-check').$message.'</div>';
+        return $alert;
+    }
+    public function infoAlert($message){
+        $alert = $this->alertDiv('alert-info', 'fa-info').$message.'</div>';
+        return $alert;
+    }
     
-    /*
-     * Setup mesage  (construct alert class and icon)
-     * @params : $status (String), $icon (String)
-     * @return : String
-     */
-    private function setup($status, $icon) {
-        return '<div class="alert alert-'.$status.'"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><span class="fa fa-'.$icon.'"></span> ';
+    private function alertDiv($alert,$font){
+        $alertStyle = '<div class="alert '.$alert.'" role="alert">'
+                . '<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'
+                . '<span class="fa '.$font.'"></span> ';
+        return $alertStyle;
     }
     
 }
-

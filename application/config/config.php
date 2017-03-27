@@ -27,7 +27,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // At my office
 //$config['base_url'] = 'http://practice.com/mano/';
 // At home
-$config['base_url'] = 'http://localhost/mano/';
+$url = 2;
+$http_url = "http://";
+switch ($url) {
+    case 1:
+        // windows local
+        $base_url = $http_url."localhost/mano/";
+        break;
+    case 2:
+        // local vHost
+        $base_url = $http_url."mano.local";
+        break;
+    case 3:
+        // mini mac 
+        $base_url = $http_url."8888/mano/";
+        break;
+    default :
+        $base_url = $http_url."localhost/mano/";
+        break;
+}
+$config['base_url'] = $base_url;
 /*
   |--------------------------------------------------------------------------
   | Index File

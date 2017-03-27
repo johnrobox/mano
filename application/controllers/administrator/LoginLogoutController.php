@@ -1,12 +1,16 @@
 <?php
 
-class LoginController extends CI_Controller {
+class LoginLogoutController extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
+        $this->load->model("AdminUser");
+        $this->load->model("AdminUserLog");
+        $this->load->library("Random");
     }
     
     public function index() {
+        $this->auth->checkAuth();
         $data["page_title"] = "Administrator Login";
         $this->load->view("administrator/default/header-login", $data);
         $this->load->view("administrator/pages/login");
@@ -35,10 +39,10 @@ class LoginController extends CI_Controller {
             );
         } else {
             $loginData = array(
-                'admin_email' => $this->input->post('username'),
+                'admin_username' => $this->input->post('username'),
                 'admin_password' => md5(md5($this->input->post('password')))
             );
-            $login = $this->Administrator->login($loginData);
+            $login = $this->AdminUser->login($loginData);
             if ($login['valid'] == false) {
                 $response = array(
                     'error' => true,
@@ -48,13 +52,14 @@ class LoginController extends CI_Controller {
             } else {
                 $row = $login['data'];
                 $id = $row->id;
-                $login_token = $this->random->generateRandomString(50);
+                $login_token = $this->random->generateRandomString(88);
                 date_default_timezone_set("Asia/Manila");
                 $log_data = array(
                     'admin_last_login' => date('Y-m-d h:i:s'),
-                    'admin_token' => $login_token
+                    'admin_token' => $login_token,
+                    'admin_status' => 1
                 );
-                $response = $this->AdministratorLog->update($id, $log_data);
+                $response = $this->AdminUserLog->update($id, $log_data);
                 if ($response ==  true) {
                     $session = array(
                         'AdminId' => $id,
@@ -75,6 +80,30 @@ class LoginController extends CI_Controller {
                     );
                 }
             }
+        }
+        echo json_encode($response);
+    }
+    
+    public function logoutExec() {
+        $type = $this->input->post("type");
+        if ($type == "logout") {
+            date_default_timezone_set("Asia/Manila");
+            $user_id = $this->session->userdata('AdminId');
+            $user_last_logout = date('Y-m-d h:i:s');
+
+            $data = array(
+                "admin_status" => 0,
+                "admin_last_logout" => $user_last_logout
+            );
+            $result = $this->AdminUser->logout($user_id, $data);
+            if ($result) {
+                 $this->auth->forceLogout();
+                 $response = array("logout" => true);
+            } else {
+                 $response = array("logout" => false);
+            }
+        } else {
+            $response = array("logout" => false);
         }
         echo json_encode($response);
     }

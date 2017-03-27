@@ -5,29 +5,17 @@
  */
 
 // Defined javascript base url
-    var url = 1;
+    var url = 2;
     var base_url = '';
-    var live_base_segment = "/index.php/admin/";
-    var base_segment = '/mano/index.php/administrator/';
     switch (url) {
         case 1:
-            base_url = 'http://localhost' + base_segment;
+            base_url = 'http://localhost/mano/';
             break;
         case 2 :
-            base_url = 'http://practice.com' + base_segment;
+            base_url = 'http://mano.local/';
             break;
-        case 3 :
-            // subject to change, it depends on registered ip address
-            base_url = 'http://192.168.0.3' + base_segment;
-            break;
-        case 4 :
-            base_url = 'http://localhost:8888' + base_segment;
-            break;
-	    case 5 :
-		    base_url = "http://kapai-coredrops.ml" + live_base_segment;
-			break;
         default:
-            base_url = 'http://localhost' + base_segment;
+            base_url = 'http://localhost';
             
     }
     

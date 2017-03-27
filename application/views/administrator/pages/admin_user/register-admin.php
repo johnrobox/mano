@@ -116,20 +116,6 @@ echo $this->session->flashdata('success');
             echo form_dropdown('gender', $admin_gender, '', 'class="form-control" id="gender"');
             ?>
         </div>
-        <div class="form-group">
-            <?php
-            echo form_label('Birthdate', 'birthdate');
-            echo form_error('birthdate', '<br><span class="text-red">', '</span>');
-            $birthdate = array(
-                'type' => 'text',
-                'name' => 'birthdate',
-                'id' => 'example1',
-                'value' => set_value('birthdate'),
-                'class' => 'form-control'
-            );
-            echo form_input($birthdate);
-            ?>
-        </div>
         <?php 
         $submit_button = array(
             'type' => 'submit',

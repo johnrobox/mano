@@ -13,7 +13,7 @@ $(document).ready(function(){
         loginLoadingImage.show();
         $.ajax({
             type: "POST",
-            url: window.base_url + "LoginController/loginExec",
+            url: window.base_url + "index.php/administrator/LoginLogoutController/loginExec",
             dataType: "json",
             data: login_form.serialize(),
             success: function(data){
@@ -28,7 +28,7 @@ $(document).ready(function(){
                         console.log("[ERROR] : error type not set!"); 
                     }
                 } else {
-                    //window.location.href = window.base_url + "DashboardController/index";
+                    window.location.href = window.base_url + "index.php/administrator/DashboardController/index";
                 }
                 loginLoadingImage.hide();
             },
