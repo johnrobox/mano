@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // At my office
 //$config['base_url'] = 'http://practice.com/mano/';
 // At home
-$url = 2;
+$url = 1;
 $http_url = "http://";
 switch ($url) {
     case 1:
