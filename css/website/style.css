@@ -1,0 +1,15 @@
+.container {
+}
+
+.navbar-brand{
+
+	font-size: 41px;
+}
+
+.navbar-default .navbar-header .navbar-brand {
+    height: 93px !important;
+}
+
+.container {
+    background: #f8f8f8 !important;
+}
