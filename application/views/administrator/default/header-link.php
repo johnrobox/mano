@@ -44,6 +44,11 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="<?php echo base_url(); ?>js/common-script.js"></script>
+    <?php 
+    if (isset($script)) {
+            foreach ($script as $js) { ?>
+            <script src="<?php echo base_url().'js/administrator/'.$js;?>.js"></script>
+    <?php } }?>
     <script src="<?php echo base_url(); ?>js/administrator/logout.js"></script>
 
 </head>

@@ -11,3 +11,8 @@ and open the template in the editor.
 .text-red {
     color : red;
 }
+
+.loginAuth {
+    color : green;
+    margin-bottom: 10px;
+}

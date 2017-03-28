@@ -1,15 +1,16 @@
 
-
 $(document).ready(function(){
     var loginButton = $("#loginButton");
     var loginLoadingImage = $("#loginLoadingImage");
-    var login_form = $("#loginForm")
+    var login_form = $("#loginForm");
     var usernameError = $("#usernameError");
     var passwordError = $("#passwordError");
     
     loginLoadingImage.hide();
     
     loginButton.click(function() {
+        usernameError.text("");
+        passwordError.text("");
         loginLoadingImage.show();
         $.ajax({
             type: "POST",
@@ -28,7 +29,12 @@ $(document).ready(function(){
                         console.log("[ERROR] : error type not set!"); 
                     }
                 } else {
-                    window.location.href = window.base_url + "index.php/administrator/DashboardController/index";
+                    usernameError.removeClass("text-red");
+                    usernameError.addClass("loginAuth");
+                    usernameError.text("AUTHENTICATING . . . . .");
+                    setTimeout(function(){ 
+                        window.location.href = window.base_url + "index.php/administrator/DashboardController/index";
+                    }, 2000);
                 }
                 loginLoadingImage.hide();
             },

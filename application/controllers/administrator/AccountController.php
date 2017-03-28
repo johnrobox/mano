@@ -8,15 +8,19 @@ class AccountController extends CI_Controller {
         $this->auth->checkLogin();
         
         $this->load->model("AdminUser");
+        $this->load->model("AdminUserLog");
         // get Login account info
-        $login_id = $this->session->userdata("AdminId");
-        $this->accountInfo = $this->AdminUser->getById($login_id);
+        $this->login_id = $this->session->userdata("AdminId");
+        $this->accountInfo = $this->AdminUser->getById($this->login_id);
+        
+        $this->load->library("Alert");
     }
     
     public function accountSetting() {
         $data = array(
             'page_title' => 'Register Admin User',
             'account' => $this->accountInfo,
+            'script' => array('change-password'),
             'page_header' => 'Account settings',
         );
         $this->load->view('administrator/default/header-link', $data);
@@ -39,6 +43,62 @@ class AccountController extends CI_Controller {
         $this->load->view('administrator/pages/my_account/profile');
         $this->load->view("administrator/modals/common/logout-confirmation");
         $this->load->view('administrator/default/footer-link');
+    }
+    
+    public function updateExec() {
+        $validate = array(
+            array(
+                'field' => 'firstname',
+                'label' => 'Firstname',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'lastname',
+                'label' => 'Lastname',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'email',
+                'label' => 'Email',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'username',
+                'label' => 'Username',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'gender',
+                'label' => 'Gender',
+                'rules' => 'required'
+            )
+        );
+        $this->form_validation->set_rules($validate);
+        if ($this->form_validation->run() == false){
+            $this->accountSetting();
+        } else {
+            $firstname = $this->input->post("firstname");
+            $lastname = $this->input->post("lastname");
+            $username = $this->input->post("username");
+            $email = $this->input->post("email");
+            $gender = $this->input->post("gender");
+            $data = array(
+                'admin_firstname' => $firstname,
+                'admin_lastname' => $lastname,
+                'admin_username' => $username,
+                'admin_email' => $email,
+                'admin_gender' => $gender
+            );
+            $result = $this->AdminUser->updateById($this->login_id, $data);
+            if ($result) {
+                date_default_timezone_set("Asia/Manila");
+                $this->AdminUserLog->update($this->login_id, array('admin_modified' => date('Y-m-d h:i:s')));
+                $this->session->set_flashdata('success', $this->alert->successAlert('Your account are successfully updated.'));
+            } else {
+                $this->session->set_flashdata('error', $this->alert->warningAlert('Cannot update your account! Please try it again!'));
+            }
+            redirect(base_url().'index.php/administrator/AccountController/accountSetting');
+        }
     }
     
 }

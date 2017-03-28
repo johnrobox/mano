@@ -4,7 +4,10 @@
                 <div class="col-sm-4 col-sm-offset-4" style="margin-top: 100px;">
                     <div class="login-panel panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Please Sign In</h3>
+                            <h3 class="panel-title">
+                                <img src="<?php echo base_url();?>images/administrator/common/lock1.png" style="width: 25px;"/>
+                                Please Sign In
+                            </h3>
                         </div>
                         <div class="panel-body">
                             <img id="loginLoadingImage" src="<?php echo base_url();?>images/common/loading/loading_apple.gif" class="center-block" style="height: 25px; margin-bottom: 10px;"/>
@@ -12,7 +15,7 @@
                             <fieldset>
                                 <form id="loginForm" style="text-align: center">
                                 <div class="form-group">
-                                    <span class="text-red" id="usernameError"></span>
+                                    <div class="text-red" id="usernameError"></div>
                                     <?php 
                                     $login_email = array(
                                         'type' => 'text',
@@ -25,7 +28,7 @@
                                     ?>
                                 </div>
                                 <div class="form-group">
-                                    <span class="text-red" id="passwordError"></span>
+                                    <div class="text-red" id="passwordError"></div>
                                     <?php
                                     $login_password = array(
                                         'type' => 'password',
