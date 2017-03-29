@@ -42,7 +42,7 @@ class LoginLogoutController extends CI_Controller {
                 'admin_username' => $this->input->post('username'),
                 'admin_password' => md5(md5($this->input->post('password')))
             );
-            $login = $this->AdminUser->login($loginData);
+            $login = $this->AdminUser->checkExistWithReturn($loginData);
             if ($login['valid'] == false) {
                 $response = array(
                     'error' => true,

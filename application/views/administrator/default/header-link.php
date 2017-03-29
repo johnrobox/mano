@@ -24,7 +24,7 @@
     <link href="<?php echo base_url();?>css/backend/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     
     <!-- custom style -->
-    <link href="<?php echo base_url();?>css/backend/custom.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url();?>css/common-style.css" rel="stylesheet" type="text/css">
     
     <!-- jQuery -->
     <script src="<?php echo base_url(); ?>js/backend/jquery.min.js"></script>
@@ -44,6 +44,12 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script src="<?php echo base_url(); ?>js/common-script.js"></script>
+    <?php 
+    if (isset($script)) {
+            foreach ($script as $js) { ?>
+            <script src="<?php echo base_url().'js/administrator/'.$js;?>.js"></script>
+    <?php } }?>
+    <script src="<?php echo base_url(); ?>js/administrator/change-profile.js"></script>
     <script src="<?php echo base_url(); ?>js/administrator/logout.js"></script>
 
 </head>

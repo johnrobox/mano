@@ -6,16 +6,16 @@
 
 // Defined javascript base url
     var url = 1;
-    var base_url = '';
+    var server_url = '';
     switch (url) {
         case 1:
-            base_url = 'http://localhost/mano/';
+            server_url = 'http://localhost/mano/';
             break;
         case 2 :
-            base_url = 'http://mano.local/';
+            server_url = 'http://mano.local/';
             break;
         default:
-            base_url = 'http://localhost';
+            server_url = 'http://localhost';
             
     }
-    
+    var base_url = server_url + "index.php/administrator/";

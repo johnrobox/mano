@@ -18,20 +18,36 @@ class Employee extends CI_Model {
      * @params $data (array)
      * @return $response (array)
      */
-    public function insert($data){
-        $response['added'] = ($this->db->insert($this->table, $data)) ? true : false;
-        return $response;
+    public function insertData($data){
+        $this->db->insert($this->table, $data);
+        return ($this->db->affected_rows()) ? true : false;
     }
     
-    /*
-     * get all
-     * @params
-     * @return (object)
-     */
-    public function get_all() {
+    
+    public function getAll() {
         $query = $this->db->get($this->table);
         return $query->result();
     }
+    
+    public function getFirstLastId($states){
+        $query = $this->db->query("SELECT id FROM ".$this->table." WHERE id=(SELECT ".$states."(id) FROM ".$this->table.")");
+        $row = $query->row();
+        return (isset($row)) ? $row->id : false;
+    }
+    
+    public function getSingleData($customer_id) {
+        $this->db->where('id', $customer_id);
+        $query = $this->db->get($this->table);
+        return $query->row();
+    }
+    
+    public function findPreviousNextById($id, $states, $operator) {
+        $query = $this->db->query("select * from ".$this->table." where id = (select $states(id) from ".$this->table." where id ".$operator." ".$id.")");
+        $result['select'] = ($this->db->affected_rows() > 0 ) ? true : false;
+        $result['customer'] = $query->result();
+        return $result;
+    }
+        
     
     /*
      * change status by id
@@ -60,7 +76,7 @@ class Employee extends CI_Model {
      * @params $id(int)
      * @return $response (object)
      */
-    public function get_by_id($id) {
+    public function getById($id) {
         $this->db->where('id', $id);
         $query = $this->db->get($this->table);
         return $query->result();

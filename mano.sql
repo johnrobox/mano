@@ -1,20 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.11
--- http://www.phpmyadmin.net
+-- version 4.6.5.2
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 19, 2016 at 11:58 AM
--- Server version: 5.6.24
--- PHP Version: 5.5.24
+-- Host: localhost:3306
+-- Generation Time: Mar 29, 2017 at 12:24 PM
+-- Server version: 5.6.35
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `mano`
@@ -23,65 +17,95 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `system_users`
+-- Table structure for table `admin_users`
 --
 
-CREATE TABLE IF NOT EXISTS `system_users` (
-  `id` int(3) NOT NULL,
-  `user_firstname` varchar(100) DEFAULT NULL,
-  `user_lastname` varchar(100) DEFAULT NULL,
-  `user_username` varchar(100) DEFAULT NULL,
-  `user_password` varchar(250) DEFAULT NULL,
-  `user_gender` tinyint(3) DEFAULT NULL COMMENT '1-male, 2-female',
-  `user_role` tinyint(3) DEFAULT NULL COMMENT '1-administrator, 2-accounting'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+CREATE TABLE `admin_users` (
+  `id` int(100) NOT NULL,
+  `admin_firstname` varchar(200) NOT NULL,
+  `admin_lastname` varchar(200) NOT NULL,
+  `admin_username` varchar(150) NOT NULL,
+  `admin_email` varchar(150) NOT NULL,
+  `admin_password` varchar(250) NOT NULL,
+  `admin_gender` tinyint(3) NOT NULL,
+  `admin_image` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `system_users`
+-- Dumping data for table `admin_users`
 --
 
-INSERT INTO `system_users` (`id`, `user_firstname`, `user_lastname`, `user_username`, `user_password`, `user_gender`, `user_role`) VALUES
-(1, 'John Robert', 'Jerodiaz', 'johnrobert', '$2y$10$WdnVQGNiMH3LBQIzt4Q/FOouFNFuz.2KVvXXAUnpu6SW3wcWUq56u', 1, 1);
+INSERT INTO `admin_users` (`id`, `admin_firstname`, `admin_lastname`, `admin_username`, `admin_email`, `admin_password`, `admin_gender`, `admin_image`) VALUES
+(4, 'John Robert', 'Jerodiaz', 'admin', 'johnrobertjerodiaz@gmail.com', '9df7a7314e3884b26222e2ccd834aa24', 1, '15027868_194772600981103_2277019694430465798_n.jpg');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `system_user_logs`
+-- Table structure for table `admin_user_logs`
 --
 
-CREATE TABLE IF NOT EXISTS `system_user_logs` (
-  `id` int(3) NOT NULL,
-  `user_id` int(3) DEFAULT NULL,
-  `user_token` varchar(200) DEFAULT NULL,
-  `user_created` datetime DEFAULT NULL,
-  `user_modified` datetime DEFAULT NULL,
-  `user_lastlogin` datetime DEFAULT NULL,
-  `user_lastlogout` datetime DEFAULT NULL,
-  `user_flag` tinyint(3) DEFAULT '0' COMMENT '0-offline, 1-online',
-  `user_status` tinyint(3) DEFAULT '1' COMMENT '0-disable, 1-enable'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+CREATE TABLE `admin_user_logs` (
+  `id` int(100) NOT NULL,
+  `admin_token` varchar(250) NOT NULL,
+  `admin_id` int(100) NOT NULL,
+  `admin_created` date NOT NULL,
+  `admin_modified` date NOT NULL,
+  `admin_last_login` date NOT NULL,
+  `admin_last_logout` date NOT NULL,
+  `admin_status` tinyint(3) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `system_user_logs`
+-- Dumping data for table `admin_user_logs`
 --
 
-INSERT INTO `system_user_logs` (`id`, `user_id`, `user_token`, `user_created`, `user_modified`, `user_lastlogin`, `user_lastlogout`, `user_flag`, `user_status`) VALUES
-(1, 1, 'rRptfFED3XkhA5Ut5TnQfIatiphWXjamrgNjtBETgcHHxnoOwYHRVl7TXkAxlhASj14vAVxvmOWun2JxPqUfslVI', '2016-07-19 08:30:16', NULL, '2016-07-19 09:52:30', NULL, 1, 1);
+INSERT INTO `admin_user_logs` (`id`, `admin_token`, `admin_id`, `admin_created`, `admin_modified`, `admin_last_login`, `admin_last_logout`, `admin_status`) VALUES
+(2, '4ZN2EKvds77ok4Ry6Hp1aycbiJK54OQ8NDbsoGFQOMf8R6HXO6YYFbaYVU3ZIU7wxjYWZDNNq2Wh8EfXLeVrp5pk', 4, '2017-03-27', '2017-03-29', '2017-03-29', '2017-03-29', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employees`
+--
+
+CREATE TABLE `employees` (
+  `id` int(100) NOT NULL,
+  `employee_firstname` varchar(100) NOT NULL,
+  `employee_lastname` varchar(100) NOT NULL,
+  `employee_address` varchar(200) NOT NULL,
+  `employee_gender` tinyint(3) NOT NULL,
+  `employee_date_created` date NOT NULL,
+  `employee_date_modified` date NOT NULL,
+  `employee_status` tinyint(3) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `employees`
+--
+
+INSERT INTO `employees` (`id`, `employee_firstname`, `employee_lastname`, `employee_address`, `employee_gender`, `employee_date_created`, `employee_date_modified`, `employee_status`) VALUES
+(1, 'Grazelle', 'Villaso', 'Tapon Canayahon Ronda Cebu', 2, '2017-03-29', '0000-00-00', 1);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `system_users`
+-- Indexes for table `admin_users`
 --
-ALTER TABLE `system_users`
+ALTER TABLE `admin_users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `system_user_logs`
+-- Indexes for table `admin_user_logs`
 --
-ALTER TABLE `system_user_logs`
+ALTER TABLE `admin_user_logs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `employees`
+--
+ALTER TABLE `employees`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -89,15 +113,17 @@ ALTER TABLE `system_user_logs`
 --
 
 --
--- AUTO_INCREMENT for table `system_users`
+-- AUTO_INCREMENT for table `admin_users`
 --
-ALTER TABLE `system_users`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+ALTER TABLE `admin_users`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
--- AUTO_INCREMENT for table `system_user_logs`
+-- AUTO_INCREMENT for table `admin_user_logs`
 --
-ALTER TABLE `system_user_logs`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+ALTER TABLE `admin_user_logs`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `employees`
+--
+ALTER TABLE `employees`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;

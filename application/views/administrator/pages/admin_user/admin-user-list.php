@@ -1,4 +1,7 @@
-
+<?php 
+echo $this->session->flashdata("success"); 
+echo $this->session->flashdata("error"); 
+?>
 <div class="panel panel-default">
     <div class="panel-heading">List</div>
     <div class="panel-body">

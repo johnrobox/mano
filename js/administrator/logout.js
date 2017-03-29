@@ -24,7 +24,7 @@ $(document).ready(function() {
         loading_images.show();
         $.ajax({
             type: "POST",
-            url: window.base_url + "index.php/administrator/LoginLogoutController/logoutExec",
+            url: window.base_url + "LoginLogoutController/logoutExec",
             dataType: "json",
             data: {
                 type : "logout"
@@ -35,7 +35,7 @@ $(document).ready(function() {
                     logout_confirm_error.show();
                     logout_confirm_error.text("Cannot process request! Please refresh the page and try the action again!");
                 } else {
-                    window.location.href = window.base_url;
+                    window.location.href = window.server_url + "admin";
                 }
                 loading_images.hide();
             },
