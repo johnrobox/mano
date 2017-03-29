@@ -16,3 +16,10 @@ and open the template in the editor.
     color : green;
     margin-bottom: 10px;
 }
+
+.loading-fixed-size {
+    width: 25px; height: 25px;
+}
+.loading-margin-top {
+    margin-top: 30px;
+}

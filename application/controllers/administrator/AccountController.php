@@ -135,14 +135,17 @@ class AccountController extends CI_Controller {
             $result = $this->AdminUser->checkExistWithReturn(array('admin_password' => md5(md5($old_password))));
             if ($result['valid']) {
                 $update_password = $this->AdminUser->updateById($this->login_id, array('admin_password' => md5(md5($new_password))));
-                if ($update_password) 
+                if ($update_password) {
+                    date_default_timezone_set("Asia/Manila");
+                    $this->AdminUserLog->update($this->login_id, array('admin_modified' => date('Y-m-d h:i:s')));
                     $response = array('error' => false);
-                else 
+                } else {
                     $response = array(
                         'error' => true,
                         'type' => 'common',
                         'message' => 'Cannot update password! Please try it again.'
                     );
+                }
             } else {
                 $response = array(
                     'error' => true,
@@ -179,6 +182,8 @@ class AccountController extends CI_Controller {
                         'message' => 'Cannot update profile image!'
                     );
                 } else {
+                    date_default_timezone_set("Asia/Manila");
+                    $this->AdminUserLog->update($this->login_id, array('admin_modified' => date('Y-m-d h:i:s')));
                     if ($old_profile['image_profile']->admin_image && !empty($old_profile['image_profile']->admin_image)) {
                         // check old file if exist 
                         if (file_exists('images/administrator/admin_users/uploads/'.$old_profile['image_profile']->admin_image)) {

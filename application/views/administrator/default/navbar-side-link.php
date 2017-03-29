@@ -68,19 +68,8 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        
-                        
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Employees<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?php echo base_url();?>admin/register-employee">Register</a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo base_url();?>admin/employee-list">List</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            <a href="<?php echo base_url();?>index.php/administrator/EmployeeController/index"><i class="fa fa-table fa-fw"></i> Employees</a>
                         </li>
                         <li>
                             <a href="<?php echo base_url();?>admin/products"><i class="fa fa-table fa-fw"></i> Products</a>

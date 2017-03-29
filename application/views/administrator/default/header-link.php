@@ -24,7 +24,7 @@
     <link href="<?php echo base_url();?>css/backend/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     
     <!-- custom style -->
-    <link href="<?php echo base_url();?>css/backend/custom.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url();?>css/common-style.css" rel="stylesheet" type="text/css">
     
     <!-- jQuery -->
     <script src="<?php echo base_url(); ?>js/backend/jquery.min.js"></script>
