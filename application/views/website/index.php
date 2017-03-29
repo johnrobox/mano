@@ -24,18 +24,18 @@
 		      </form>
 		      <ul class="nav nav navbar-nav navbar-right" style="margin-top: 32px; font-size: 15px; font-weight: 600;" >
 
-
 		        <li><a href="http://localhost/mano">Home</a></li>
-		        <li><a href="#">Store Location</a></li>
 		        <li><a href="http://localhost/mano/index.php/HomepageController/contactUs">Contact Us</a></li>
 		        <li><a href="#">About Us</a></li>
 
 		        <li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
 		          <ul class="dropdown-menu">
-		            <li><a href="#">Action</a></li>
-		            <li><a href="#">Another action</a></li>
-		            <li><a href="#">Something else here</a></li>
+		            <li><a href="#">Paints</a></li>
+		            <li><a href="#">Home Hardware</a></li>
+		            <li><a href="#">Plumbing</a></li>
+		            <li><a href="#">Electrical</a></li>
+		            <li><a href="#">Tools</a></li>
 		          </ul>
 		        </li>
 		       </ul>
@@ -79,7 +79,7 @@
 		  </div>
 		<!--END for Slider-->
 		<!--Container-->
-		<h2 style="text-align: center; font-size: 43px;">Products</h2>
+		<h2 style=" font-size: 43px; color: #164879;">Products</h2>
 
   			<div class="row">
 			<div class="col-sm-3" style="background: url(images/website/catbox-paints-and-sundries.jpg) 10px 0 no-repeat #fff; height: 300px;     margin: 0px;">
@@ -237,7 +237,7 @@
 		<div class="row">
 			    <div class="col-sm-3 col-md-4" style="background-color: #ffffff;" >
 			    <h3 style="text-align: center;">Welcome To</h3>
-			    	<h2 style="text-align: center;">Mano Construction & Enterprises</h2>
+			    	<h2 style="text-align: center;">Mano's Construction & Enterprises</h2>
 			    	<br>
 			    	<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
@@ -284,7 +284,7 @@
 
 
 		<div class="container">
-				<h2 style="font-size: 43px;">More Business</h2 >
+				<h2 style="font-size: 43px; color: #164879;">More Business</h2 >
 
 			<div class="row">
 
