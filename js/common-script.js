@@ -5,7 +5,7 @@
  */
 
 // Defined javascript base url
-    var url = 2;
+    var url = 1;
     var server_url = '';
     switch (url) {
         case 1:
