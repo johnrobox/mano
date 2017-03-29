@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
     var loginButton = $("#loginButton");
     var loginLoadingImage = $("#loginLoadingImage");
