@@ -8,15 +8,19 @@ class AccountController extends CI_Controller {
         $this->auth->checkLogin();
         
         $this->load->model("AdminUser");
+        $this->load->model("AdminUserLog");
         // get Login account info
-        $login_id = $this->session->userdata("AdminId");
-        $this->accountInfo = $this->AdminUser->getById($login_id);
+        $this->login_id = $this->session->userdata("AdminId");
+        $this->accountInfo = $this->AdminUser->getById($this->login_id);
+        
+        $this->load->library("Alert");
     }
     
     public function accountSetting() {
         $data = array(
             'page_title' => 'Register Admin User',
             'account' => $this->accountInfo,
+            'script' => array('change-password'),
             'page_header' => 'Account settings',
         );
         $this->load->view('administrator/default/header-link', $data);
@@ -24,6 +28,8 @@ class AccountController extends CI_Controller {
         $this->load->view('administrator/default/navbar-side-link');
         $this->load->view('administrator/pages/my_account/settings');
         $this->load->view("administrator/modals/common/logout-confirmation");
+        $this->load->view("administrator/modals/my_account/change-profile");
+        $this->load->view("administrator/modals/my_account/change-password");
         $this->load->view('administrator/default/footer-link');
     }
     
@@ -37,8 +43,162 @@ class AccountController extends CI_Controller {
         $this->load->view('administrator/default/navbar-top-link');
         $this->load->view('administrator/default/navbar-side-link');
         $this->load->view('administrator/pages/my_account/profile');
+        $this->load->view("administrator/modals/my_account/change-profile");
         $this->load->view("administrator/modals/common/logout-confirmation");
         $this->load->view('administrator/default/footer-link');
     }
     
+    public function updateExec() {
+        $validate = array(
+            array(
+                'field' => 'firstname',
+                'label' => 'Firstname',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'lastname',
+                'label' => 'Lastname',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'email',
+                'label' => 'Email',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'username',
+                'label' => 'Username',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'gender',
+                'label' => 'Gender',
+                'rules' => 'required'
+            )
+        );
+        $this->form_validation->set_rules($validate);
+        if ($this->form_validation->run() == false){
+            $this->accountSetting();
+        } else {
+            $firstname = $this->input->post("firstname");
+            $lastname = $this->input->post("lastname");
+            $username = $this->input->post("username");
+            $email = $this->input->post("email");
+            $gender = $this->input->post("gender");
+            $data = array(
+                'admin_firstname' => $firstname,
+                'admin_lastname' => $lastname,
+                'admin_username' => $username,
+                'admin_email' => $email,
+                'admin_gender' => $gender
+            );
+            $result = $this->AdminUser->updateById($this->login_id, $data);
+            if ($result) {
+                date_default_timezone_set("Asia/Manila");
+                $this->AdminUserLog->update($this->login_id, array('admin_modified' => date('Y-m-d h:i:s')));
+                $this->session->set_flashdata('success', $this->alert->successAlert('Your account are successfully updated.'));
+            } else {
+                $this->session->set_flashdata('error', $this->alert->warningAlert('Cannot update your account! Please try it again!'));
+            }
+            redirect(base_url().'index.php/administrator/AccountController/accountSetting');
+        }
+    }
+    
+    public function changePasswordExec() {
+        $validate = array(
+            array(
+                'field' => 'old_password',
+                'label' => 'Old Password',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'new_password',
+                'label' => 'New Password',
+                'rules' => 'required|min_length[6]'
+            ),
+            array(
+                'field' => 'repeat_new_password',
+                'label' => 'Repeat New Password',
+                'rules' => 'required|matches[new_password]'
+            )
+        );
+        $this->form_validation->set_rules($validate);
+        if ($this->form_validation->run() == false){
+            $response = array(
+                'error' => true,
+                'type' => 'required',
+                'message' => $this->form_validation->error_array()
+            );
+        } else {
+            $old_password = $this->input->post("old_password");
+            $new_password = $this->input->post("new_password");
+            $result = $this->AdminUser->checkExistWithReturn(array('admin_password' => md5(md5($old_password))));
+            if ($result['valid']) {
+                $update_password = $this->AdminUser->updateById($this->login_id, array('admin_password' => md5(md5($new_password))));
+                if ($update_password) {
+                    date_default_timezone_set("Asia/Manila");
+                    $this->AdminUserLog->update($this->login_id, array('admin_modified' => date('Y-m-d h:i:s')));
+                    $response = array('error' => false);
+                } else {
+                    $response = array(
+                        'error' => true,
+                        'type' => 'common',
+                        'message' => 'Cannot update password! Please try it again.'
+                    );
+                }
+            } else {
+                $response = array(
+                    'error' => true,
+                    'type' => 'common',
+                    'message' => 'Your old password is incorrect.'
+                );
+            }
+        }
+        echo json_encode($response);
+    }
+    
+    public function changeProfile() {
+        // sanitize image 
+        $profile = $_FILES['profile_image'];
+        if (empty($profile['name'])) {
+            $response = array(
+                'error' => true,
+                'message' => 'Please select profile image!'
+            );
+        } else {
+            // get old image used to delete if new file is upload successful.
+            $old_profile = $this->AdminUser->getOldProfile($this->login_id);
+            if (!$old_profile['had_profile']) {
+                $response = array(
+                    'error' => true,
+                    'message' => 'Error in uploading profile image!'
+                );
+            } else {
+                // udpate profile name in database
+                $update_profile = $this->AdminUser->updateById($this->login_id, array('admin_image' => $profile['name']));
+                if (!$update_profile) {
+                    $response = array(
+                        'error' => true,
+                        'message' => 'Cannot update profile image!'
+                    );
+                } else {
+                    date_default_timezone_set("Asia/Manila");
+                    $this->AdminUserLog->update($this->login_id, array('admin_modified' => date('Y-m-d h:i:s')));
+                    if ($old_profile['image_profile']->admin_image && !empty($old_profile['image_profile']->admin_image)) {
+                        // check old file if exist 
+                        if (file_exists('images/administrator/admin_users/uploads/'.$old_profile['image_profile']->admin_image)) {
+                            // remove old profile
+                            unlink('images/administrator/admin_users/uploads/'.$old_profile['image_profile']->admin_image);
+                        }
+                    }
+                    // updload new profile
+                    move_uploaded_file($profile['tmp_name'], 'images/administrator/admin_users/uploads/'.$profile['name']);
+                    $this->session->set_flashdata('success', $this->alert->successAlert('Profile successfully updated.'));
+                    $response = array("error" => false);
+                }
+            }
+        }
+        echo json_encode($response);
+    }
+     
 }

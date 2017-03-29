@@ -14,7 +14,7 @@
                                     $image_name = "not-set.png";
                                 $image_link = "default/" . $image_name;
                             } else {
-                                $image_link = "uploads/" . $admin->admin_image;
+                                $image_link = "uploads/" . $account[0]->admin_image;
                             }
                             ?>
                             <img src="<?php echo base_url();?>images/administrator/admin_users/<?php echo $image_link; ?>" style="height: 100px; width: 100px; border: 1px solid black" class="img-circle img-responsive changeProfile"/>
@@ -68,19 +68,8 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        
-                        
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Employees<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="<?php echo base_url();?>admin/register-employee">Register</a>
-                                </li>
-                                <li>
-                                    <a href="<?php echo base_url();?>admin/employee-list">List</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
+                            <a href="<?php echo base_url();?>index.php/administrator/EmployeeController/index"><i class="fa fa-table fa-fw"></i> Employees</a>
                         </li>
                         <li>
                             <a href="<?php echo base_url();?>admin/products"><i class="fa fa-table fa-fw"></i> Products</a>
