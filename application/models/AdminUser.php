@@ -43,7 +43,7 @@ class AdminUser extends CI_Model {
     }
     
     
-    public function login($data) {
+    public function checkExistWithReturn($data) {
         $check = $this->db->get_where($this->table, $data);
         if ($check->num_rows() > 0) {
             $row = $check->row();
