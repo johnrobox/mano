@@ -14,7 +14,7 @@ $(document).ready(function(){
         loginLoadingImage.show();
         $.ajax({
             type: "POST",
-            url: window.base_url + "index.php/administrator/LoginLogoutController/loginExec",
+            url: window.base_url + "LoginLogoutController/loginExec",
             dataType: "json",
             data: login_form.serialize(),
             success: function(data){
@@ -33,7 +33,7 @@ $(document).ready(function(){
                     usernameError.addClass("loginAuth");
                     usernameError.text("AUTHENTICATING . . . . .");
                     setTimeout(function(){ 
-                        window.location.href = window.base_url + "index.php/administrator/DashboardController/index";
+                        window.location.href = window.base_url + "DashboardController/index";
                     }, 2000);
                 }
                 loginLoadingImage.hide();

@@ -93,4 +93,19 @@ class AdminUser extends CI_Model {
         return ($this->db->affected_rows()) ? true : false;
     }
     
+    public function getOldProfile($id) {
+        $this->db->where("id", $id);
+        $this->db->select(array('admin_image'));
+        $query = $this->db->get($this->table);
+        if ($query->num_rows() > 0) {
+            $result = array(
+                'had_profile' => true,
+                'image_profile' => $query->row()
+            );
+        } else {
+            $result['had_profile'] = false;
+        }
+        return $result;
+    }
+    
 }

@@ -1,4 +1,7 @@
-
+<?php 
+echo $this->session->flashdata("success"); 
+echo $this->session->flashdata("error"); 
+?>
 <div class="jumbotron">
     <b>FIRST NAME :  </b>
         <?php echo $account[0]->admin_firstname; ?>

@@ -9,8 +9,8 @@ echo form_button($change_password);
 ?>
 <br><br>
 <?php 
-echo $this->session->flashdata('error');
-echo $this->session->flashdata('success');
+echo $this->session->flashdata("success"); 
+echo $this->session->flashdata("error"); 
 ?>
 <div class="alert alert-success" id="scriptSuccessAlert"></div>
 <div class="panel panel-default">

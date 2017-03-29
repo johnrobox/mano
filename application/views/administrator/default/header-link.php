@@ -49,6 +49,7 @@
             foreach ($script as $js) { ?>
             <script src="<?php echo base_url().'js/administrator/'.$js;?>.js"></script>
     <?php } }?>
+    <script src="<?php echo base_url(); ?>js/administrator/change-profile.js"></script>
     <script src="<?php echo base_url(); ?>js/administrator/logout.js"></script>
 
 </head>

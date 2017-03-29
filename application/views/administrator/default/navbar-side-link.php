@@ -14,7 +14,7 @@
                                     $image_name = "not-set.png";
                                 $image_link = "default/" . $image_name;
                             } else {
-                                $image_link = "uploads/" . $admin->admin_image;
+                                $image_link = "uploads/" . $account[0]->admin_image;
                             }
                             ?>
                             <img src="<?php echo base_url();?>images/administrator/admin_users/<?php echo $image_link; ?>" style="height: 100px; width: 100px; border: 1px solid black" class="img-circle img-responsive changeProfile"/>

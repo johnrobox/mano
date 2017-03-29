@@ -28,6 +28,7 @@ class AccountController extends CI_Controller {
         $this->load->view('administrator/default/navbar-side-link');
         $this->load->view('administrator/pages/my_account/settings');
         $this->load->view("administrator/modals/common/logout-confirmation");
+        $this->load->view("administrator/modals/my_account/change-profile");
         $this->load->view("administrator/modals/my_account/change-password");
         $this->load->view('administrator/default/footer-link');
     }
@@ -42,6 +43,7 @@ class AccountController extends CI_Controller {
         $this->load->view('administrator/default/navbar-top-link');
         $this->load->view('administrator/default/navbar-side-link');
         $this->load->view('administrator/pages/my_account/profile');
+        $this->load->view("administrator/modals/my_account/change-profile");
         $this->load->view("administrator/modals/common/logout-confirmation");
         $this->load->view('administrator/default/footer-link');
     }
@@ -102,7 +104,6 @@ class AccountController extends CI_Controller {
         }
     }
     
-    
     public function changePasswordExec() {
         $validate = array(
             array(
@@ -148,6 +149,48 @@ class AccountController extends CI_Controller {
                     'type' => 'common',
                     'message' => 'Your old password is incorrect.'
                 );
+            }
+        }
+        echo json_encode($response);
+    }
+    
+    public function changeProfile() {
+        // sanitize image 
+        $profile = $_FILES['profile_image'];
+        if (empty($profile['name'])) {
+            $response = array(
+                'error' => true,
+                'message' => 'Please select profile image!'
+            );
+        } else {
+            // get old image used to delete if new file is upload successful.
+            $old_profile = $this->AdminUser->getOldProfile($this->login_id);
+            if (!$old_profile['had_profile']) {
+                $response = array(
+                    'error' => true,
+                    'message' => 'Error in uploading profile image!'
+                );
+            } else {
+                // udpate profile name in database
+                $update_profile = $this->AdminUser->updateById($this->login_id, array('admin_image' => $profile['name']));
+                if (!$update_profile) {
+                    $response = array(
+                        'error' => true,
+                        'message' => 'Cannot update profile image!'
+                    );
+                } else {
+                    if ($old_profile['image_profile']->admin_image && !empty($old_profile['image_profile']->admin_image)) {
+                        // check old file if exist 
+                        if (file_exists('images/administrator/admin_users/uploads/'.$old_profile['image_profile']->admin_image)) {
+                            // remove old profile
+                            unlink('images/administrator/admin_users/uploads/'.$old_profile['image_profile']->admin_image);
+                        }
+                    }
+                    // updload new profile
+                    move_uploaded_file($profile['tmp_name'], 'images/administrator/admin_users/uploads/'.$profile['name']);
+                    $this->session->set_flashdata('success', $this->alert->successAlert('Profile successfully updated.'));
+                    $response = array("error" => false);
+                }
             }
         }
         echo json_encode($response);

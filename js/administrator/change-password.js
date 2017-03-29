@@ -46,7 +46,7 @@ $(document).ready(function(){
         repeat_new_password_err.text("");  
         $.ajax({
             type: "POST",
-            url: window.base_url + "index.php/administrator/AccountController/changePasswordExec",
+            url: window.base_url + "AccountController/changePasswordExec",
             dataType: "json",
             data: update_password_form.serialize(),
             success: function(data){
