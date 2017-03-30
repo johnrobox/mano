@@ -10,6 +10,8 @@
     height: 93px !important;
 }
 
-.container {
-    background: #f8f8f8;
-}
+.glyphicon{color:#fff;}
+.panel{margin-bottom: 0px;}
+.panel-body{background-color:#FFF; border:1px solid#CCC;}
+.top-bar {background: #3c3d3e; color: white; padding: 5px; position: relative; overflow: hidden; padding-right:5px;}
+.box-position{position: fixed;bottom: 0; width: 100%;}
