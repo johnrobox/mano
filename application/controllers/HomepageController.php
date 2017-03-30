@@ -16,14 +16,16 @@ class HomepageController extends CI_Controller {
 
     public function contactUs() {
     	// http://localhost/mano/index.php/HomepageController/contactUs
-    	$this->load->view("website/contact_us/contact-us");
         $this->load->view("website/contact_us/contact-us_header");
+        $this->load->view("website/contact_us/contact-us");
         $this->load->view("website/contact_us/contact-us_footer");
     }
 
     public function aboutUs() {
     	// http://localhost/mano/index.php/HomepageController/aboutUs
-    	echo "hehehe";
+        $this->load->view("website/about_us/about-us_header");
+        $this->load->view("website/about_us/about-us");
+        $this->load->view("website/about_us/about-us_footer");
     }
 
 }
