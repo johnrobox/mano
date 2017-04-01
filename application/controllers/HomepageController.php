@@ -28,4 +28,12 @@ class HomepageController extends CI_Controller {
         $this->load->view("website/about_us/about-us_footer");
     }
 
+    public function paints() {
+        //http://localhost/mano/index.php/HomepageController/paints
+        $this->load->view("website/paints/paints_header");
+        $this->load->view("website/paints/paints");
+        $this->load->view("website/paints/paints_footer");
+        
+    }
+
 }
