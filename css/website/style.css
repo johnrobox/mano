@@ -10,8 +10,94 @@
     height: 93px !important;
 }
 
-.glyphicon{color:#fff;}
-.panel{margin-bottom: 0px;}
-.panel-body{background-color:#FFF; border:1px solid#CCC;}
-.top-bar {background: #3c3d3e; color: white; padding: 5px; position: relative; overflow: hidden; padding-right:5px;}
-.box-position{position: fixed;bottom: 0; width: 100%;}
+.glyphicon{
+
+	color:#fff;
+}
+.panel{
+
+	margin-bottom: 0px;
+}
+.panel-body{
+
+	background-color:#fff; 
+	border:1px solid#CCC;
+}
+.top-bar {
+
+	background: #3c3d3e; 
+	color: white; 
+	padding: 5px; 
+	position: relative; 
+	overflow: hidden; 
+	padding-right:5px;
+}
+.box-position{
+
+	position: fixed;
+	bottom: 0; 
+	width: 100%;
+}
+
+
+.box{
+
+	width:256px; 
+	height:282px;
+	float:left; 
+	margin:20px 30px;  
+}
+.box img{
+
+	width:256px; 
+	height:282px;
+}
+.box .overlay{
+
+	width:300px; 
+	height:250px; 
+	margin:-250px 0px 0px 0px; 
+	opacity:0.5; 
+}
+.box a{
+
+	padding:6px 18px;  
+	text-decoration:none; 
+	font-family:sans-serif; 
+	font-size:18px; 
+	font-weight: 800; 
+	margin:-140px 0px 0px 15px; 
+	display:inline-block; 
+	opacity:0; 
+	transition:all 0.5s ease-in-out;   
+	cursor: pointer;
+	/* z-index: 10000; */
+	position: absolute;
+}
+
+
+
+.box .overlay:hover{
+
+	opacity:0.1; 
+	transition:all 0.5s ease-in-out; 
+	width:300px; 
+	margin-left:50px; 
+	float:right; 
+}
+.box:hover{
+
+	box-shadow:0px 0px 20px #6A6A6A;
+	transition:all 0.5s ease-in-out;
+}
+.box:hover a{
+
+	opacity:1; 
+	background: red;
+	color:#fff; 
+	margin:-40px 0px 0px 15px;  
+	border-radius:1px; 
+}
+.box a:hover{
+	transition:all 0.5s ease-in-out;  
+}

@@ -32,7 +32,7 @@
 					        <li class="dropdown">
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
 					          <ul class="dropdown-menu">
-					            <li><a href="#">Paints</a></li>
+					            <li><a href="http://localhost/mano/index.php/HomepageController/paints">Paints</a></li>
 					            <li><a href="#">Home Hardware</a></li>
 					            <li><a href="#">Plumbing</a></li>
 					            <li><a href="#">Electrical</a></li>
@@ -51,12 +51,18 @@
 			<br>
 			<br>
 			<br>
+			
 			<br>
 			<br>
 			<br>
-			<br>
-			<br>
-
+			
+			
+			
+				<div class="container">
+							<h3 style="text-align: center;">Lorem ipsum </h3>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+			     			 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+			     </div>
 			<br>
 			<br>
 			<br>
