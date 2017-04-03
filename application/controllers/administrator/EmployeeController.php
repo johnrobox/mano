@@ -92,6 +92,64 @@ class EmployeeController extends CI_Controller {
         echo json_encode($response);
     }
     
+    public function updateExec() {
+        $validate = array(
+            array(
+                'field' => 'firstname',
+                'label' => 'Firstname',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'lastname',
+                'label' => 'Lastname',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'address',
+                'label' => 'Address',
+                'rules' => 'required'
+            ),
+            array(
+                'field' => 'gender',
+                'label' => 'Gender',
+                'rules' => 'required'
+            )
+        );
+        $this->form_validation->set_rules($validate);
+        if ($this->form_validation->run() == false) {
+            $response = array(
+                'error' => true,
+                'is_common' => true,
+                'message' => $this->form_validation->error_array()
+            ); 
+        } else {
+            $id = $this->input->post("id");
+            $firstname = $this->input->post("firstname");
+            $lastname = $this->input->post("lastname");
+            $address = $this->input->post("address");
+            $gender = $this->input->post("gender");
+            $data = array(
+                'employee_firstname' => $firstname,
+                'employee_lastname' => $lastname,
+                'employee_address' => $address,
+                'employee_gender' => $gender
+            );
+            $result = $this->Employee->updateById($id, $data);
+            if ($result) {
+                $response = array(
+                    'error' => false
+                );
+            } else {
+                $response = array(
+                    'error' => true,
+                    'is_common' => false,
+                    'message' => 'Cannot update employee information! Maybe, nothing change, please try it again'
+                );
+            }
+        }
+        echo json_encode($response);
+    }
+    
     public function getEmployeeInfo() {
         $id = $this->input->post('id');
         $state = $this->input->post('state');
