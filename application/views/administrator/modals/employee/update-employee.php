@@ -4,8 +4,9 @@
             <div class="modal-header">
                 <i class="pull-right fa fa-times" data-dismiss="modal"></i>
                 <i class="glyphicon glyphicon-pencil"></i> EDIT EMPLOYEE INFORMATION
-                <div class="text-red commonError"></div>
-                <img id="loadingImageUpdateCustomer" style="height: 100px; width:100px; display: none" src="<?php echo base_url();?>images/common/loading/loading_apple.gif" class="center-block">
+                <br><br>
+                <div class="updateCommonError alert alert-danger"></div>
+                <img id="loadingImageUpdateEmpoloyee" src="<?php echo base_url();?>images/common/loading/loading_apple.gif" class="center-block loading-fixed-size">
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -63,7 +64,7 @@
                             </div>
                         </div>
                         <div class="col-sm-1">
-                            <img src="<?php echo base_url();?>images/common/loading/loading_apple.gif" class="loading-fixed-size addresRefresh loading-margin-top" />
+                            <img src="<?php echo base_url();?>images/common/loading/loading_apple.gif" class="loading-fixed-size addressRefresh loading-margin-top" />
                         </div>
                         
                         <div class="col-sm-11">
@@ -81,7 +82,7 @@
                             </div>
                         </div>
                         <div class="col-sm-1">
-                            <img src="<?php echo base_url();?>images/common/loading/loading_apple.gif" class="loading-fixed-size genderRefreshs loading-margin-top"/>
+                            <img src="<?php echo base_url();?>images/common/loading/loading_apple.gif" class="loading-fixed-size genderRefresh loading-margin-top"/>
                         </div>
                     </form>
                 </div>
