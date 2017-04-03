@@ -9,6 +9,7 @@ echo $this->session->flashdata("error");
 <div class="panel panel-default">
     <div class="panel-heading">List</div>
     <div class="panel-body">
+        <div class="alert alert-success successCommonAlert">Success</div>
         <table class="table table-bordered" id="employees-list-datatable">
             <thead>
                 <tr style="background-color: #eee">
@@ -37,10 +38,10 @@ echo $this->session->flashdata("error");
                         ?>
                         <img src="<?php echo base_url();?>images/administrator/employee/<?php echo $image_name; ?>" style="width: 50px; height: 50px;"/>
                     </td>
-                    <td><?php echo ucwords(strtolower($employee->employee_firstname));?></td>
-                    <td><?php echo ucwords(strtolower($employee->employee_lastname)); ?></td>
-                    <td><?php echo $employee->employee_address; ?></td>
-                    <td>
+                    <td id="firstnameTD<?php echo $id;?>"><?php echo ucwords(strtolower($employee->employee_firstname));?></td>
+                    <td id="lastnameTD<?php echo $id;?>"><?php echo ucwords(strtolower($employee->employee_lastname)); ?></td>
+                    <td id="addressTD<?php echo $id;?>"><?php echo $employee->employee_address; ?></td>
+                    <td id="genderTD<?php echo $id;?>">
                     <?php 
                         if ($gender ==1) 
                            echo "MALE";
