@@ -48,7 +48,7 @@ echo $this->session->flashdata("error");
                             echo "not set";
                     ?>
                     </td>
-                    <td><?php echo ($admin->admin_status == 0) ? "Online" : "Offline"; ?></td>
+                    <td><?php echo ($admin->admin_status == 1) ? "Online" : "Offline"; ?></td>
                     <td><?php echo ($admin->admin_last_login != "0000-00-00") ? $admin->admin_last_login : "-----"; ?></td>
                 </tr>
                 <?php } ?>
