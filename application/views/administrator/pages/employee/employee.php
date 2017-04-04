@@ -9,7 +9,8 @@ echo $this->session->flashdata("error");
 <div class="panel panel-default">
     <div class="panel-heading">List</div>
     <div class="panel-body">
-        <div class="alert alert-success successCommonAlert">Success</div>
+        <div class="alert alert-success successCommonAlert"></div>
+        <div class="alert alert-danger errorCommonAlert"></div>
         <table class="table table-bordered" id="employees-list-datatable">
             <thead>
                 <tr style="background-color: #eee">
@@ -51,7 +52,7 @@ echo $this->session->flashdata("error");
                             echo "not set";
                     ?>
                     </td>
-                    <td><?php echo ($employee->employee_status == 1) ? "Active" : "....."; ?></td>
+                    <td id="statusTD<?php echo $id;?>"><?php echo ($employee->employee_status == 1) ? "Active" : "....."; ?></td>
                     <td>
                         <?php
                         $view_info_button = array(

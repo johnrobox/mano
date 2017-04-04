@@ -52,13 +52,13 @@ $(document).ready(function(){
         // get data
         GetEmployeeInfo(function(data) {  
             console.log(data);
-            firstnameForm.val(data.customer.employee_firstname);
+            firstnameForm.val(data.employee.employee_firstname);
             firstnameRefresh.hide();
-            lastnameForm.val(data.customer.employee_lastname);
+            lastnameForm.val(data.employee.employee_lastname);
             lastnameRefresh.hide();
-            addressForm.val(data.customer.employee_address);
+            addressForm.val(data.employee.employee_address);
             addressRefresh.hide();
-            genderForm.val(data.customer.employee_gender);
+            genderForm.val(data.employee.employee_gender);
             genderRefresh.hide();
         }, employee_id, 0); 
         
@@ -135,13 +135,13 @@ $(document).ready(function(){
         
         GetEmployeeInfo(function(data) {  
             console.log(data);
-            firstnameForm.val(data.customer.employee_firstname);
+            firstnameForm.val(data.employee.employee_firstname);
             firstnameRefresh.hide();
-            lastnameForm.val(data.customer.employee_lastname);
+            lastnameForm.val(data.employee.employee_lastname);
             lastnameRefresh.hide();
-            addressForm.val(data.customer.employee_address);
+            addressForm.val(data.employee.employee_address);
             addressRefresh.hide();
-            genderForm.val(data.customer.employee_gender);
+            genderForm.val(data.employee.employee_gender);
             genderRefresh.hide();
         }, employee_id, 0); 
     });

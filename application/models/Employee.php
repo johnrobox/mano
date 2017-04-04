@@ -39,7 +39,7 @@ class Employee extends CI_Model {
     public function findPreviousNextById($id, $states, $operator) {
         $query = $this->db->query("select * from ".$this->table." where id = (select $states(id) from ".$this->table." where id ".$operator." ".$id.")");
         $result['select'] = ($this->db->affected_rows() > 0 ) ? true : false;
-        $result['customer'] = $query->result();
+        $result['employee'] = $query->result();
         return $result;
     }
         
@@ -49,12 +49,10 @@ class Employee extends CI_Model {
         return ($this->db->affected_rows() > 0 ) ? true : false;
     }
     
-    
-    
-    public function change_status_by_id($id, $status) {
+    public function changeStatus($id, $data) {
         $this->db->where('id', $id);
-        $response['changed'] = ($this->db->update($this->table, array('employee_status' => $status)));
-        return $response;
+        $this->db->update($this->table, $data);
+        return ($this->db->affected_rows() > 0 ) ? true : false;
     }
     
     /*
