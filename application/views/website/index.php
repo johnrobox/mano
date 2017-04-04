@@ -86,10 +86,44 @@
 				  </div>
 				<!--END for Slider-->
 				<!--Container-->
-				<h2 style=" font-size: 43px; color: #164879;">Our Products</h2>
+				<h2 style=" font-size: 36px; color: #164879;">Our Products</h2>
 
 		  			<div class="row">
-					<div class="col-sm-3" style="background: url(images/website/catbox-paints-and-sundries.jpg) 10px 0 no-repeat #fff; height: 300px;     margin: 0px;">
+
+					<div class="col-sm-3"style="background: url(images/website/building.jpg) 10px 0 no-repeat #fff; margin: 0px; height: 300px;">
+						<h3 style="text-align: center;">Building Materials</h3>
+
+						<ul style="list-style: none; padding: 0;">
+						  <li>
+						  	<a href="#">Lumber</a>
+						  </li>	
+						  <li>
+						  	<a href="#">Plywood</a>
+						  </li>
+						  <li>
+						  	<a href="#">Plyboard</a>
+						  </li>	
+						  <li>
+						  	<a href="#">Lumber and Studs</a>
+						  </li>
+						  <br>
+						  <li>
+						  	<a href="#">Cement</a>
+						  </li>
+
+						  <li>
+						  	<a href="#">Hollow Blocks</a>
+						  </li>
+						  <br>
+						   <span>
+						  	<a style="color: red;" href="#">VIEW ALL ></a>
+						  </span>
+
+						</ul>
+						
+					</div>
+
+					<div class="col-sm-3" style="background: url(images/website/paint.jpg) 10px 0 no-repeat #fff; height: 300px;     margin: 0px;">
 						<h3 style="text-align: center;">Paints</h3>
 
 						<ul style="list-style: none; padding: 0;">
@@ -108,7 +142,7 @@
 						  <li>
 						  	<a href="#">Ladders</a>
 						  </li>	
-
+						  <br>
 						   <span>
 						  	<a style="color: red;" href="http://localhost/mano/index.php/HomepageController/paints">VIEW ALL ></a>
 						  </span>
@@ -117,55 +151,9 @@
 
 					</div>
 
-					<div class="col-sm-3"style="background: url(images/website/catbox-home-hardware.jpg) 10px 0 no-repeat #fff; margin: 0px;">
-						<h3 style="text-align: center;">Home Hardware</h3>
+					
 
-						<ul style="list-style: none; padding: 0;">
-						  <li>
-						  	<a href="#">Building Materials & Supplies</a>
-						  </li>	
-						  <li>
-						  	<a href="#">Door & Cabinet Hardware</a>
-						  </li>
-						  <li>
-						  	<a href="#">Industrial & Exhaust Fans</a>
-						  </li>	
-						  <li>
-						  	<a href="#">Locksets & Padlocks</a>
-						  </li>
-						  <li>
-						  	<a href="#">Bathroom Accessories</a>
-						  </li>
-						  <li>
-						  	<a href="#">Drawers & Closets</a>
-						  </li>	
-						  <li>
-						  	<a href="#">Mats & Carpets</a>
-						  </li>	
-						  <li>
-						  	<a href="#">Trash Bins</a>
-						  </li>
-						  <li>
-						  	<a href="#">Pails & Buckets</a>
-						  </li>
-						  <li>
-						  	<a href="#">Dish Drainers & Kitchen Accessories</a>
-						  </li>
-						  <li>
-						  	<a href="#">Cleaning Implements</a>
-						  </li>		
-						  <li>
-						  	<a href="#">Stackables & Storage Accessories</a>
-						  </li>	
-
-						   <span>
-						  	<a style="color: red;" href="#">VIEW ALL ></a>
-						  </span>	
-						</ul>
-						
-					</div>
-
-					<div class="col-sm-3" style="background: url(images/website/catbox-plumbing.jpg) 10px 0 no-repeat #fff; height: 300px; margin: 0px;">
+					<div class="col-sm-3" style="background: url(images/website/pvc1.jpg) 10px 0 no-repeat #fff; height: 300px; margin: 0px;">
 					<h3 style="text-align: center;">Plumbing</h3>
 						<ul style="list-style: none; padding: 0;">
 						  <li>
@@ -195,7 +183,7 @@
 						  <li>
 						  	<a href="#">Sink, Lavatory & Accessories</a>
 						  </li>	
-						
+							<br>
 						   <span>
 						  	<a style="color: red;" href="#">VIEW ALL ></a>
 						  </span>
@@ -203,7 +191,7 @@
 						
 					</div>
 
-					<div class="col-sm-3" style="background: url(images/website/catbox-electrical.jpg) 10px 0 no-repeat #fff; height: 300px; margin: 0px;">
+					<div class="col-sm-3" style="background: url(images/website/electrical.jpg) 10px 0 no-repeat #fff; height: 300px; margin: 0px;">
 					<h3 style="text-align: center;">Electrical</h3>
 						<ul style="list-style: none; padding: 0;">
 						  <li>
@@ -230,7 +218,7 @@
 						  <li>
 						  	<a href="#">Audio, Video & Telephone Supplies</a>
 						  </li>	
-						
+							<br>
 						   <span>
 						  	<a style="color: red;" href="#">VIEW ALL ></a>
 						  </span>
@@ -240,11 +228,11 @@
 
 				</div>
 
-		<br>
+		<br> <br>
 				<div class="row">
 					    <div class="col-sm-3 col-md-4" style="background-color: #ffffff;" >
-					    <h3 style="text-align: center;">Welcome To</h3>
-					    	<h2 style="text-align: center;">Mano's Construction & Enterprises</h2>
+					    <h3 style="text-align: center; font-size: 27px;">Welcome To</h3>
+					    	<h2 style="text-align: center; font-size: 23px; font-weight: 600;">Mano's Construction & Enterprises</h2>
 					    	<br>
 					    	<p> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 								Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
@@ -257,22 +245,16 @@
 							    <ol class="carousel-indicators">
 							      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 							      <li data-target="#myCarousel" data-slide-to="1"></li>
-							      <li data-target="#myCarousel" data-slide-to="2"></li>
 							    </ol>
 
 							    <!-- Wrapper for slides -->
 							    <div class="carousel-inner" role="listbox">
 							      <div class="item active">
-							        <img src="images/website/paints1.jpg" alt="slide1" width="1500" height="145"/>
-
+							        <img src="images/website/stock.png" alt="slide1" width="1500" height="145"/>
 							      </div>
 
 							      <div class="item">
-							        <img src="images/website/househardware.jpg" alt="slide2" width="1500" height="145"/>
-							      </div>
-
-							      <div class="item">
-							        <img src="images/website/electrical.png" alt="slide2" width="1500" height="145"/>
+							        <img src="images/website/stocks.png" alt="slide2" width="1500" height="145"/>
 							      </div>
 							    </div>
 
@@ -291,7 +273,7 @@
 
 
 				<div class="container">
-						<h2 style="font-size: 43px; color: #164879;">More Business</h2 >
+						<h2 style="font-size: 36px; color: #164879;">More Business</h2 >
 
 					<div class="row">
 
