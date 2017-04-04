@@ -4,7 +4,7 @@
 				<div class="footer">
 					<div class="container">
 					
-						<ol class="breadcrumb" style="font-size: 17px; font-weight: 600; background-color: #ffffff;">
+						<ol class="breadcrumb" style="font-weight: 600; background-color: #ffffff;">
 						  <li><a href="http://localhost/mano/">Home</a></li>
 						  <li><a href="#">Brands</a></li>
 						  <li><a href="#">Sales & Specials</a></li>
