@@ -1,6 +1,6 @@
 <?php
 
-class EmployeeController extends CI_Controller {
+class ProductController extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
@@ -8,7 +8,7 @@ class EmployeeController extends CI_Controller {
         $this->auth->checkLogin();
         
         $this->load->model("AdminUser");
-        $this->load->model("Employee");
+        $this->load->model("Product");
         // get Login account info
         $this->login_id = $this->session->userdata("AdminId");
         $this->accountInfo = $this->AdminUser->getById($this->login_id);
@@ -18,24 +18,24 @@ class EmployeeController extends CI_Controller {
     
     public function index() {
         $data = array(
-            'page_title' => 'Register Employee',
+            'page_title' => 'Admin - Product',
             'account' => $this->accountInfo,
-            'employees' => $this->Employee->getAll(),
+            'products' => $this->Product->getAll(),
             'script' => array(
-                'employee/register-employee', 
-                'employee/update-employee',
-                'employee/view-info-employee',
-                'employee/change-status-employee'
+                'product/register-product', 
+                'product/update-product',
+                'product/view-info-product',
+                'product/change-status-product'
                 ),
-            'page_header' => 'Employees'
+            'page_header' => 'Products'
         );
         $this->load->view('administrator/default/header-link', $data);
         $this->load->view('administrator/default/navbar-top-link');
         $this->load->view('administrator/default/navbar-side-link');
-        $this->load->view('administrator/pages/employee/employee');
-        $this->load->view('administrator/modals/employee/register-employee');
-        $this->load->view('administrator/modals/employee/update-employee');
-        $this->load->view("administrator/modals/employee/view-info-employee");
+        $this->load->view('administrator/pages/product/product');
+        $this->load->view('administrator/modals/product/register-product');
+        $this->load->view('administrator/modals/product/update-product');
+        $this->load->view("administrator/modals/product/view-info-product");
         $this->load->view("administrator/modals/my_account/change-profile");
         $this->load->view('administrator/default/footer-link');
     }
@@ -43,25 +43,25 @@ class EmployeeController extends CI_Controller {
     public function registerExec() {
         $validate = array(
             array(
-                'field' => 'employee_firstname',
-                'label' => 'Firstname',
+                'field' => 'product_name',
+                'label' => 'Product Name',
                 'rules' => 'required'
             ), 
             array(
-                'field' => 'employee_lastname',
-                'label' => 'Lastname',
+                'field' => 'product_price',
+                'label' => 'Product Price',
                 'rules' => 'required'
             ),
             array(
-                'field' => 'employee_address',
-                'label' => 'Address',
+                'field' => 'product_sold',
+                'label' => 'Sold in : ',
                 'rules' => 'required'
             ),
             array(
-                'field' => 'employee_gender',
-                'label' => 'Gender',
+                'field' => 'product_quantity',
+                'label' => 'Quantity',
                 'rules' => 'required'
-            ) 
+            )
         );
         $this->form_validation->set_rules($validate);
         if ($this->form_validation->run() == false) {
@@ -71,19 +71,23 @@ class EmployeeController extends CI_Controller {
                 'message' => $this->form_validation->error_array()
             );
         } else {
-            $firstname = $this->input->post("employee_firstname");
-            $lastname = $this->input->post("employee_lastname");
-            $address = $this->input->post("employee_address");
-            $gender = $this->input->post("employee_gender");
+            $product_name = $this->input->post("product_name");
+            $product_price = $this->input->post("product_price");
+            $product_sold = $this->input->post("product_sold");
+            $product_quantity = $this->input->post("product_quantity");
+            $product_size_number = $this->input->post("product_size_number");
+            $product_size_measure = $this->input->post("product_size_measure");
             date_default_timezone_set("Asia/Manila");
-            $employee_info = array(
-                'employee_firstname' => $firstname,
-                'employee_lastname' => $lastname,
-                'employee_address' => $address,
-                'employee_gender' => $gender,
-                'employee_date_created' => date('Y-m-d h:i:s')
+            $product_info = array(
+                'product_name' => $product_name,
+                'product_price' => $product_price,
+                'product_sold_in' => $product_sold,
+                'product_quantity' => $product_quantity,
+                'product_size_number' => $product_size_number,
+                'product_size_measure' => $product_size_measure,
+                'product_created' => date('Y-m-d h:i:s')
             );
-            $result = $this->Employee->insertData($employee_info);
+            $result = $this->Product->insertData($product_info);
             if ($result == false) {
                 $response = array(
                     'error' => true,
@@ -92,7 +96,7 @@ class EmployeeController extends CI_Controller {
                 );
             } else {
                 $response = array('error' => false);
-                $this->session->set_flashdata('success', $this->alert->successAlert('Employee successfully added.'));
+                $this->session->set_flashdata('success', $this->alert->successAlert('Product successfully added.'));
             }
         }
         echo json_encode($response);
