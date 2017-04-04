@@ -21,7 +21,12 @@ class EmployeeController extends CI_Controller {
             'page_title' => 'Register Employee',
             'account' => $this->accountInfo,
             'employees' => $this->Employee->getAll(),
-            'script' => array('register-employee', 'update-employee'),
+            'script' => array(
+                'employee/register-employee', 
+                'employee/update-employee',
+                'employee/view-info-employee',
+                'employee/change-status-employee'
+                ),
             'page_header' => 'Employees'
         );
         $this->load->view('administrator/default/header-link', $data);
@@ -30,6 +35,7 @@ class EmployeeController extends CI_Controller {
         $this->load->view('administrator/pages/employee/employee');
         $this->load->view('administrator/modals/employee/register-employee');
         $this->load->view('administrator/modals/employee/update-employee');
+        $this->load->view("administrator/modals/employee/view-info-employee");
         $this->load->view("administrator/modals/my_account/change-profile");
         $this->load->view('administrator/default/footer-link');
     }
@@ -156,7 +162,7 @@ class EmployeeController extends CI_Controller {
         $previous = $this->Employee->getFirstLastId("min");
         $next = $this->Employee->getFirstLastId("max");
         if ($state == 0){
-            $result['customer'] = $this->Employee->getSingleData($id);
+            $result['employee'] = $this->Employee->getSingleData($id);
             $result['previous'] = $previous;
             $result['next'] = $next;
         } else if ($state == 1) {
@@ -168,6 +174,24 @@ class EmployeeController extends CI_Controller {
         }
         
         echo json_encode($result);
+    }
+    
+    public function changeStatus() {
+        $id = $this->input->post("id");
+        $status = $this->input->post("status");
+        $result = $this->Employee->changeStatus($id, array('employee_status' => $status));
+        if ($result) {
+            $response = array(
+                'error' => false,
+                'message' => 'Employee status change successfully!'
+            );
+        } else {
+            $response = array(
+                'error' => true,
+                'message' => 'Cannot change status! Please try it again!'
+            );
+        }
+        echo json_encode($response);
     }
     
 }
