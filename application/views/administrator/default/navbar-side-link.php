@@ -72,6 +72,9 @@
                             <a href="<?php echo base_url();?>index.php/administrator/EmployeeController/index"><i class="fa fa-table fa-fw"></i> Employees</a>
                         </li>
                         <li>
+                            <a href="<?php echo base_url();?>index.php/administrator/CashierController/index"><i class="fa fa-table fa-fw"></i> Cashiers</a>
+                        </li>
+                        <li>
                             <a href="<?php echo base_url();?>admin/products"><i class="fa fa-table fa-fw"></i> Products</a>
                         </li>
                         <li>

@@ -18,6 +18,11 @@ $(document).ready(function(){
     
     AddEmployeeButton.click(function(){
         registerEmployeeFormModal.modal("show");
+        firstname_error.text("");
+        lastname_error.text("");
+        address_error.text("");
+        gender_error.text("");
+        registerEmployeeCommonErrorDisplay.hide();
     });
     
     submitRegisterEmployeeButton.click(function(){
