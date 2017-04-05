@@ -46,7 +46,7 @@
 <br>
 
 			<div style="text-align: center; color: #164879;">
-				<h1>PRODUCTS > PAINTS</h1>  
+				<h2>PRODUCTS > PAINTS</h2>  
 			</div>
 
 				<div class="page-container">
