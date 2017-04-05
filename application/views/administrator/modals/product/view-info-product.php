@@ -10,78 +10,66 @@
             <div class="modal-body">
                 <table class="table table-bordered">
                     <tr>
-                        <td>Firstname</td>
+                        <td>Product Name</td>
                         <td>
                             <?php 
                             echo form_input(array(
                                 'type' => 'text',
-                                'id' => 'cashierFirstnameViewInfo',
+                                'id' => 'productNameViewInfo',
                                 'class' => 'form-control',
                                 'disabled' => ''
                             )); ?>
                         </td>
                     </tr>
                     <tr>
-                        <td>Lastname</td>
+                        <td>Product Price</td>
                         <td>
                             <?php 
                             echo form_input(array(
                                 'type' => 'text',
-                                'id' => 'cashierLastnameViewInfo',
+                                'id' => 'productPriceViewInfo',
                                 'class' => 'form-control',
                                 'disabled' => ''
                             )); ?>
                         </td>
                     </tr>
                     <tr>
-                        <td>Username</td>
+                        <td>Product Sold In</td>
                         <td>
                             <?php 
                             echo form_input(array(
                                 'type' => 'text',
-                                'id' => 'cashierUsernameViewInfo',
+                                'id' => 'productSoldInViewInfo',
                                 'class' => 'form-control',
                                 'disabled' => ''
                             )); ?>
                         </td>
                     </tr>
                     <tr>
-                        <td>Password</td>
+                        <td>Product Quantity</td>
                         <td>
                             <?php 
                             echo form_input(array(
                                 'type' => 'text',
-                                'id' => 'cashierPasswordViewInfo',
+                                'id' => 'productQuantityViewInfo',
                                 'class' => 'form-control',
                                 'disabled' => ''
                             )); ?>
                         </td>
                     </tr>
                     <tr>
-                        <td>Address</td>
+                        <td>Product Size</td>
                         <td>
                             <?php 
                             echo form_input(array(
                                 'type' => 'text',
-                                'id' => 'cashierAddressViewInfo',
+                                'id' => 'productSizeViewInfo',
                                 'class' => 'form-control',
                                 'disabled' => ''
                             )); ?>
                         </td>
                     </tr>
-                    <tr>
-                        <td>Gender</td>
-                        <td>
-                            <?php 
-                            $cashier_gender = array(
-                                    '' => 'Select Gender',
-                                    '1' => 'Male',
-                                    '2' => 'Female'
-                                );
-                            echo form_dropdown('cashierGenderViewInfo', $cashier_gender, '', 'class="form-control" id="cashierGenderViewInfo"');
-                            ?>
-                        </td>
-                    </tr>
+                    
                 </table>
             </div>
             <div class="modal-footer">

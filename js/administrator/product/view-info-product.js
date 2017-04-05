@@ -7,20 +7,21 @@
 
 $(document).ready(function(){
     
-    var viewEmployeeInfoButton = $(".viewProductInfoButton");
+    var viewProductInfoButton = $(".viewProductInfoButton");
     
     // modal
-    var employeeViewInfoModal = $("#productViewInfoModal");
+    var productViewInfoModal = $("#productViewInfoModal");
     
-    var employee_id = 0;
+    var product_id = 0;
     
-    var employeeViewInfoLoadingImage = $("#productViewInfoLoadingImage");
+    var productViewInfoLoadingImage = $("#productViewInfoLoadingImage");
     
     // form field
-    var employeeFirstnameViewInfo = $("#employeeFirstnameViewInfo");
-    var employeeLastnameViewInfo = $("#employeeLastnameViewInfo");
-    var employeeAddressViewInfo = $("#employeeAddressViewInfo");
-    var employeeGenderViewInfo = $("#employeeGenderViewInfo");
+    var productNameViewInfo = $("#productNameViewInfo");
+    var productPriceViewInfo = $("#productPriceViewInfo");
+    var productSoldInViewInfo = $("#productSoldInViewInfo");
+    var productQuantityViewInfo = $("#productQuantityViewInfo");
+    var productSizeViewInfo = $("#productSizeViewInfo");
     
     // previous and next button
     var nextAndPreviousButton = $('.nextAndPrevButtonInModal');
@@ -28,38 +29,59 @@ $(document).ready(function(){
     var infoCustPreviousButton = $('#viewPreviousButtonInModal');
     var infoCustNextButton = $('#viewNextButtonInModal');  
     
-    viewEmployeeInfoButton.click(function(){
-        employeeViewInfoLoadingImage.show();
-        employeeViewInfoModal.modal("show");
-        employee_id = this.getAttribute('value'); 
-        console.log(employee_id);
-        GetEmployeeInfo(function(data) {  
+    viewProductInfoButton.click(function(){
+        productViewInfoLoadingImage.show();
+        productViewInfoModal.modal("show");
+        product_id = this.getAttribute('value'); 
+        console.log(product_id);
+        GetProductInfo(function(data) {  
             console.log(data);
-            var em = data.employee;
-            if (data.previous == em.id)
+            var prod = data.product;
+            if (data.previous == prod.id)
                 infoCustPreviousButton.hide();
             else
                 infoCustPreviousButton.show();
-            if (data.next == em.id)
+            if (data.next == prod.id)
                 infoCustNextButton.hide();
             else 
                 infoCustNextButton.show();
             
-            employeeFirstnameViewInfo.val(em.employee_firstname);
-            employeeLastnameViewInfo.val(em.employee_lastname);
-            employeeAddressViewInfo.val(em.employee_address);
-            employeeGenderViewInfo.val(em.employee_gender);
+            productNameViewInfo.val(prod.product_name);
+            productPriceViewInfo.val(prod.product_price);
             
-            nextAndPreviousButton.attr("value", em.id);
+            var sold_in = "";
+            if (prod.product_sold_in == 1) 
+                sold_in = "ITEM";
+            else if (prod.product_sold_in == 2)
+                sold_in = "KILO";
+            else if (prod.product_sold_in == 3)
+                sold_in = "METER";
+            productSoldInViewInfo.val(sold_in);
             
-            employeeViewInfoLoadingImage.hide();
+            productQuantityViewInfo.val(prod.product_quantity);
             
-        }, employee_id, 0); 
+            var size = "";
+            if (prod.product_size_number != "0.00") {
+                if (prod.product_size_measure == 1)
+                    size = prod.product_size_number + " INCH";
+                else if (prod.product_size_measure == 2)
+                    size = prod.product_size_number + " CENTEMETER";
+                else if (prod.product_size_measure == 3)
+                    size = prod.product_size_number + " METER";
+                else if (prod.product_size_measure == 4)
+                    size = prod.product_size_number + " LITER";
+            }
+            productSizeViewInfo.val(size);
+            nextAndPreviousButton.attr("value", prod.id);
+            
+            productViewInfoLoadingImage.hide();
+            
+        }, product_id, 0); 
     });
     
     
     nextAndPreviousButton.click(function(){
-        var employee_id_PR = this.getAttribute("value");
+        var product_id_PR = this.getAttribute("value");
         var click_state = this.getAttribute("state");    
         var clicked = '';
         
@@ -70,35 +92,58 @@ $(document).ready(function(){
         else 
             clicked = 0;
         
-        employeeViewInfoLoadingImage.show();
+        productViewInfoLoadingImage.show();
         
-        employeeFirstnameViewInfo.val('');
-        employeeLastnameViewInfo.val('');
-        employeeAddressViewInfo.val('');
-        employeeGenderViewInfo.val('');
+        productNameViewInfo.val('');
+        productPriceViewInfo.val('');
+        productSoldInViewInfo.val('');
+        productQuantityViewInfo.val('');
+        productSizeViewInfo.val('');
         
-        GetEmployeeInfo(function(data){ 
+        GetProductInfo(function(data){ 
             console.log(data);
-            var em = data.employee[0];
-            if (data.previous == em.id)
+            var prod = data.product[0];
+            if (data.previous == prod.id)
                 infoCustPreviousButton.hide();
             else
                 infoCustPreviousButton.show();
-            if (data.next == em.id)
+            if (data.next == prod.id)
                 infoCustNextButton.hide();
             else 
                 infoCustNextButton.show();
             
             if (data.select == true) {
-                employeeFirstnameViewInfo.val(em.employee_firstname);
-                employeeLastnameViewInfo.val(em.employee_lastname);
-                employeeAddressViewInfo.val(em.employee_address);
-                employeeGenderViewInfo.val(em.employee_gender);
+                productNameViewInfo.val(prod.product_name);
+                productPriceViewInfo.val(prod.product_price);
+
+                var sold_in = "";
+                if (prod.product_sold_in == 1) 
+                    sold_in = "ITEM";
+                else if (prod.product_sold_in == 2)
+                    sold_in = "KILO";
+                else if (prod.product_sold_in == 3)
+                    sold_in = "METER";
+                productSoldInViewInfo.val(sold_in);
+
+                productQuantityViewInfo.val(prod.product_quantity);
+
+                var size = "";
+                if (prod.product_size_number != "0.00") {
+                    if (prod.product_size_measure == 1)
+                        size = prod.product_size_number + " INCH";
+                    else if (prod.product_size_measure == 2)
+                        size = prod.product_size_number + " CENTEMETER";
+                    else if (prod.product_size_measure == 3)
+                        size = prod.product_size_number + " METER";
+                    else if (prod.product_size_measure == 4)
+                        size = prod.product_size_number + " LITER";
+                }
+                productSizeViewInfo.val(size);
             }
             
-            nextAndPreviousButton.attr("value", em.id);
-            employeeViewInfoLoadingImage.hide();
-        }, employee_id_PR, clicked);
+            nextAndPreviousButton.attr("value", prod.id);
+            productViewInfoLoadingImage.hide();
+        }, product_id_PR, clicked);
         
     });
     

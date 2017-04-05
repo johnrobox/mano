@@ -29,6 +29,7 @@ class AdminUserController extends CI_Controller {
         $this->load->view('administrator/default/navbar-side-link');
         $this->load->view('administrator/pages/admin_user/register-admin');
         $this->load->view("administrator/modals/my_account/change-profile");
+        $this->load->view("administrator/modals/common/logout-confirmation");
         $this->load->view('administrator/default/footer-link');
     }
     
@@ -120,6 +121,7 @@ class AdminUserController extends CI_Controller {
         $this->load->view('administrator/default/navbar-side-link');
         $this->load->view('administrator/pages/admin_user/admin-user-list');
         $this->load->view("administrator/modals/my_account/change-profile");
+        $this->load->view("administrator/modals/common/logout-confirmation");
         $this->load->view('administrator/default/footer-link');
     }
     

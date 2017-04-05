@@ -37,6 +37,7 @@ class EmployeeController extends CI_Controller {
         $this->load->view('administrator/modals/employee/update-employee');
         $this->load->view("administrator/modals/employee/view-info-employee");
         $this->load->view("administrator/modals/my_account/change-profile");
+        $this->load->view("administrator/modals/common/logout-confirmation");
         $this->load->view('administrator/default/footer-link');
     }
     

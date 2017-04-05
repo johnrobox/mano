@@ -37,6 +37,7 @@ class ProductController extends CI_Controller {
         $this->load->view('administrator/modals/product/update-product');
         $this->load->view("administrator/modals/product/view-info-product");
         $this->load->view("administrator/modals/my_account/change-profile");
+        $this->load->view("administrator/modals/common/logout-confirmation");
         $this->load->view('administrator/default/footer-link');
     }
     
@@ -105,23 +106,23 @@ class ProductController extends CI_Controller {
     public function updateExec() {
         $validate = array(
             array(
-                'field' => 'firstname',
-                'label' => 'Firstname',
+                'field' => 'product_name',
+                'label' => 'Product Name',
                 'rules' => 'required'
             ),
             array(
-                'field' => 'lastname',
-                'label' => 'Lastname',
+                'field' => 'product_price',
+                'label' => 'Product Price',
                 'rules' => 'required'
             ),
             array(
-                'field' => 'address',
-                'label' => 'Address',
+                'field' => 'product_sold',
+                'label' => 'Sold In',
                 'rules' => 'required'
             ),
             array(
-                'field' => 'gender',
-                'label' => 'Gender',
+                'field' => 'product_quantity',
+                'label' => 'Product Quantity',
                 'rules' => 'required'
             )
         );
@@ -134,18 +135,24 @@ class ProductController extends CI_Controller {
             ); 
         } else {
             $id = $this->input->post("id");
-            $firstname = $this->input->post("firstname");
-            $lastname = $this->input->post("lastname");
-            $address = $this->input->post("address");
-            $gender = $this->input->post("gender");
+            $name = $this->input->post("product_name");
+            $price = $this->input->post("product_price");
+            $sold = $this->input->post("product_sold");
+            $quantity = $this->input->post("product_quantity");
+            $size_number = $this->input->post("product_number");
+            $size_measure = $this->input->post("product_measure");
             $data = array(
-                'employee_firstname' => $firstname,
-                'employee_lastname' => $lastname,
-                'employee_address' => $address,
-                'employee_gender' => $gender
+                'product_name' => $name,
+                'product_price' => $price,
+                'product_sold_in' => $sold,
+                'product_quantity' => $quantity,
+                'product_size_number' => $size_number,
+                'product_size_measure' => $size_measure
             );
-            $result = $this->Employee->updateById($id, $data);
+            $result = $this->Product->updateById($id, $data);
             if ($result) {
+                date_default_timezone_set("Asia/Manila");
+                $this->Product->updateById($id, array('product_modified' => date('Y-m-d h:i:s')));
                 $response = array(
                     'error' => false
                 );
@@ -153,27 +160,27 @@ class ProductController extends CI_Controller {
                 $response = array(
                     'error' => true,
                     'is_common' => false,
-                    'message' => 'Cannot update employee information! Maybe, nothing change, please try it again'
+                    'message' => 'Cannot update product information! Maybe, nothing change, please try it again'
                 );
             }
         }
         echo json_encode($response);
     }
     
-    public function getEmployeeInfo() {
+    public function getProductInfo() {
         $id = $this->input->post('id');
         $state = $this->input->post('state');
-        $previous = $this->Employee->getFirstLastId("min");
-        $next = $this->Employee->getFirstLastId("max");
+        $previous = $this->Product->getFirstLastId("min");
+        $next = $this->Product->getFirstLastId("max");
         if ($state == 0){
-            $result['employee'] = $this->Employee->getSingleData($id);
+            $result['product'] = $this->Product->getSingleData($id);
             $result['previous'] = $previous;
             $result['next'] = $next;
         } else if ($state == 1) {
-            $result = $this->Employee->findPreviousNextById($id, "max", "<");
+            $result = $this->Product->findPreviousNextById($id, "max", "<");
             $result['previous'] = $previous;
         } else if ($state == 2) {
-            $result = $this->Employee->findPreviousNextById($id, "min", ">");
+            $result = $this->Product->findPreviousNextById($id, "min", ">");
             $result['next'] = $next;
         }
         
@@ -183,11 +190,11 @@ class ProductController extends CI_Controller {
     public function changeStatus() {
         $id = $this->input->post("id");
         $status = $this->input->post("status");
-        $result = $this->Employee->changeStatus($id, array('employee_status' => $status));
+        $result = $this->Product->changeStatus($id, array('product_status' => $status));
         if ($result) {
             $response = array(
                 'error' => false,
-                'message' => 'Employee status change successfully!'
+                'message' => 'Product status change successfully!'
             );
         } else {
             $response = array(

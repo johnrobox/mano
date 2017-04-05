@@ -38,6 +38,7 @@ class CashierController extends CI_Controller {
         $this->load->view('administrator/modals/cashier/update-cashier');
         $this->load->view("administrator/modals/cashier/view-info-cashier");
         $this->load->view("administrator/modals/my_account/change-profile");
+        $this->load->view("administrator/modals/common/logout-confirmation");
         $this->load->view('administrator/default/footer-link');
     }
     
