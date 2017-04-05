@@ -1,44 +1,43 @@
 
 $(document).ready(function() {
-    
-    var changeStatusEmployeeButton = $(".changeStatusEmployeeButton");
+    var changeStatusProductButton = $(".changeStatusProductButton");
     var successCommonAlert = $(".successCommonAlert");
     var errorCommonAlert = $(".errorCommonAlert");
     errorCommonAlert.hide();
     
-    changeStatusEmployeeButton.click(function() {
+    changeStatusProductButton.click(function() {
         successCommonAlert.hide();
         errorCommonAlert.hide();
         
-        var employeeID = this.getAttribute('value'); 
-        var employeeStatus = this.getAttribute('status');
-        var loadingChangeStatus = $("#changeStatusLoading"+employeeID);
-        var changeStatusButton = $("#changeStatusButton"+employeeID);
-        var changeStatusText = $("#changeStatusText"+employeeID);
-        var statusTD = $("#statusTD"+employeeID);
+        var productID = this.getAttribute('value'); 
+        var productStatus = this.getAttribute('status');
+        var loadingChangeStatus = $("#changeStatusLoading"+productID);
+        var changeStatusButton = $("#changeStatusButton"+productID);
+        var changeStatusText = $("#changeStatusText"+productID);
+        var productStatusTD = $("#productStatusTD"+productID);
         loadingChangeStatus.show();
-        employeeStatus = (employeeStatus == 1) ? 0 : 1;
+        productStatus = (productStatus == 1) ? 0 : 1;
         $.ajax({
             type: "POST",
-            url: window.base_url + "EmployeeController/changeStatus",
+            url: window.base_url + "ProductController/changeStatus",
             dataType: "json",
             data: {
-                id : employeeID,
-                status : employeeStatus
+                id : productID,
+                status : productStatus
             },
             success: function(data){
                 if (data.error == false) {
-                    changeStatusButton.attr("status", employeeStatus);
-                    if (employeeStatus ==1) {
+                    changeStatusButton.attr("status", productStatus);
+                    if (productStatus ==1) {
                         changeStatusButton.addClass("btn-danger");
                         changeStatusButton.removeClass("btn-primary");
                         changeStatusText.text("Disable");
-                        statusTD.text("Active");
+                        productStatusTD.text("Active");
                     } else {
                         changeStatusButton.addClass("btn-primary");
                         changeStatusButton.removeClass("btn-danger");
                         changeStatusText.text("Enable");
-                        statusTD.text(".....");
+                        productStatusTD.text(".....");
                     }
                     successCommonAlert.text(data.message);
                     successCommonAlert.show();

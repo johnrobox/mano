@@ -11,7 +11,7 @@ echo $this->session->flashdata("error");
     <div class="panel-body">
         <div class="alert alert-success successCommonAlert"></div>
         <div class="alert alert-danger errorCommonAlert"></div>
-        <table class="table table-bordered" id="employees-list-datatable">
+        <table class="table table-bordered" id="product-list-datatable">
             <thead>
                 <tr style="background-color: #eee">
                     <th>Product Name</th>
@@ -27,9 +27,9 @@ echo $this->session->flashdata("error");
                 <?php foreach ($products as $product) { 
                     $id = $product->id; ?>
                 <tr>
-                    <td id="firstnameTD<?php echo $id;?>"><?php echo ucwords(strtolower($product->product_name));?></td>
-                    <td><?php echo $product->product_price;?></td>
-                    <td id="lastnameTD<?php echo $id;?>">
+                    <td id="productNameTD<?php echo $id;?>"><?php echo ucwords(strtolower($product->product_name));?></td>
+                    <td id="productPriceTD<?php echo $id;?>"><?php echo $product->product_price;?></td>
+                    <td id="productSoldInTD<?php echo $id;?>">
                         <?php 
                         $sold_in = $product->product_sold_in;
                         if ($sold_in == 1) 
@@ -42,8 +42,8 @@ echo $this->session->flashdata("error");
                             echo "....";
                         ?>
                     </td>
-                    <td id="addressTD<?php echo $id;?>"><?php echo $product->product_quantity; ?></td>
-                    <td id="genderTD<?php echo $id;?>">
+                    <td id="productQuantityTD<?php echo $id;?>"><?php echo $product->product_quantity; ?></td>
+                    <td id="productSizeNumberMeasureTD<?php echo $id;?>">
                         <?php 
                         echo ($product->product_size_number=="0.00") ? " " : $product->product_size_number." "; 
                         $measure =  $product->product_size_measure;
@@ -59,7 +59,7 @@ echo $this->session->flashdata("error");
                             echo ".....";
                         ?>
                     </td>
-                    <td id="statusTD<?php echo $id;?>"><?php echo ($product->product_status == 1) ? "Active" : "....."; ?></td>
+                    <td id="productStatusTD<?php echo $id;?>"><?php echo ($product->product_status == 1) ? "Active" : "....."; ?></td>
                     <td>
                         <?php
                         $view_info_button = array(
@@ -89,7 +89,7 @@ echo $this->session->flashdata("error");
                             $btn_text = "Enable";
                         } 
                         ?>
-                        <button class="btn btn-<?php echo $btn_type;?> btn-xs changeStatusEmployeeButton" id="changeStatusButton<?php echo $id;?>" value="<?php echo $id;?>" status="<?php echo $status;?>" title="Change Customer Status">
+                        <button class="btn btn-<?php echo $btn_type;?> btn-xs changeStatusProductButton" id="changeStatusButton<?php echo $id;?>" value="<?php echo $id;?>" status="<?php echo $status;?>" title="Change Product Status">
                             <span id="changeStatusText<?php echo $id;?>"><?php echo $btn_text;?></span>
                             <img src="<?php echo base_url();?>images/common/loading/loading_apple.gif" id="changeStatusLoading<?php echo $id;?>" style="width: 20px; height: 20px; display: none"/>
                         </button>
@@ -106,7 +106,7 @@ echo $this->session->flashdata("error");
 
 <script>
     $(document).ready(function(){
-        $('#employees-list-datatable').DataTable({
+        $('#product-list-datatable').DataTable({
             responsive: true
         });
     });

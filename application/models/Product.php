@@ -33,7 +33,7 @@ class Product extends CI_Model {
     public function findPreviousNextById($id, $states, $operator) {
         $query = $this->db->query("select * from ".$this->table." where id = (select $states(id) from ".$this->table." where id ".$operator." ".$id.")");
         $result['select'] = ($this->db->affected_rows() > 0 ) ? true : false;
-        $result['cashier'] = $query->result();
+        $result['product'] = $query->result();
         return $result;
     }
         

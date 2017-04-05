@@ -1,5 +1,5 @@
 
-<button class="btn btn-primary" id="AddEmployeeButton">Add Employee</button>
+<button class="btn btn-primary" id="AddEmployeeButton">ADD EMPLOYEES</button>
 <br><br>
 <?php 
 echo $this->session->flashdata("success"); 
