@@ -2,11 +2,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-4 col-sm-offset-4" style="margin-top: 100px;">
+                    <img src="<?php echo base_url();?>images/common/mano/logo2.png" class="center-block img-responsive" />
+                    <br>
                     <div class="login-panel panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">
                                 <img src="<?php echo base_url();?>images/administrator/common/lock1.png" style="width: 25px;"/>
-                                Please Sign In
+                                Administrator Login
                             </h3>
                         </div>
                         <div class="panel-body">

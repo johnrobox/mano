@@ -3,7 +3,7 @@
 $(document).ready(function(){
     var loginButton = $("#loginButton");
     var loginLoadingImage = $("#loginLoadingImage");
-    var login_form = $("#loginForm")
+    var accountingLoginForm = $("#accountingLoginForm")
     var usernameError = $("#usernameError");
     var passwordError = $("#passwordError");
     
@@ -15,9 +15,9 @@ $(document).ready(function(){
         loginLoadingImage.show();
         $.ajax({
             type: "POST",
-            url: window.base_url + "index.php/accounting/LoginLogoutController/loginExec",
+            url: window.base_url_accounting + "LoginLogoutController/loginExec",
             dataType: "json",
-            data: login_form.serialize(),
+            data: accountingLoginForm.serialize(),
             success: function(data){
                 console.log(data);
                 if (data.error == true) {
@@ -30,7 +30,12 @@ $(document).ready(function(){
                         console.log("[ERROR] : error type not set!"); 
                     }
                 } else {
-                    window.location.href = window.base_url + "index.php/accounting/DashboardController/index";
+                    usernameError.removeClass("text-red");
+                    usernameError.addClass("loginAuth");
+                    usernameError.text("AUTHENTICATING...");
+                    setTimeout(function(){ 
+                        window.location.href = window.base_url_accounting + "DashboardController/index";
+                    }, 2000);
                 }
                 loginLoadingImage.hide();
             },

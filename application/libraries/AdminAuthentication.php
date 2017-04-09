@@ -1,6 +1,6 @@
 <?php
 
-class AccountAuthentication {
+class AdminAuthentication {
     
     public function __construct() {
         $this->ses =& get_instance();

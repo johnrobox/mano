@@ -15,6 +15,13 @@ class DashboardController extends CI_Controller {
     }
     
     public function index() {
+        $prefs['template'] = array(
+                'table_open'           => '<table class="calendar table table-bordered table-hover">', 
+                'cal_cell_start'       => '<td class="day">',
+                'cal_cell_start_today' => '<td class="today" style="color: blue; font-size : 15px">'
+        );
+
+        $this->load->library('Calendar', $prefs);
         $data = array(
             'page_title' => 'Register Admin User',
             'account' => $this->accountInfo,

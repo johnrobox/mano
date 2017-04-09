@@ -4,6 +4,8 @@ class LoginLogoutController extends CI_Controller {
     
     public function __construct() {
         parent::__construct();
+        $this->load->model("Cashier");
+        $this->load->library("Random");
     }
     
     public function login() {
@@ -35,10 +37,10 @@ class LoginLogoutController extends CI_Controller {
             );
         } else {
             $loginData = array(
-                'admin_username' => $this->input->post('username'),
-                'admin_password' => md5(md5($this->input->post('password')))
+                'cashier_username' => $this->input->post('username'),
+                'cashier_password' => $this->input->post('password')
             );
-            $login = $this->AdminUser->login($loginData);
+            $login = $this->Cashier->checkExistWithReturn($loginData);
             if ($login['valid'] == false) {
                 $response = array(
                     'error' => true,
@@ -51,18 +53,17 @@ class LoginLogoutController extends CI_Controller {
                 $login_token = $this->random->generateRandomString(88);
                 date_default_timezone_set("Asia/Manila");
                 $log_data = array(
-                    'admin_last_login' => date('Y-m-d h:i:s'),
-                    'admin_token' => $login_token,
-                    'admin_status' => 1
+                    'cashier_last_login' => date('Y-m-d h:i:s'),
+                    'cashier_token' => $login_token,
+                    'cashier_login_status' => 1
                 );
-                $response = $this->AdminUserLog->update($id, $log_data);
+                $response = $this->Cashier->updateById($id, $log_data);
                 if ($response ==  true) {
                     $session = array(
-                        'AdminId' => $id,
-                        'AdminFirstname' => $row->admin_firstname,
-                        'AdminLastname' => $row->admin_lastname,
-                        'AdminEmail' => $row->admin_email,
-                        'AdminToken' => $login_token
+                        'CashierId' => $id,
+                        'CashierFirstname' => $row->cashier_firstname,
+                        'CashierLastname' => $row->cashier_lastname,
+                        'CashierToken' => $login_token
                     );
                     $response = array(
                         'error' => false
@@ -78,6 +79,24 @@ class LoginLogoutController extends CI_Controller {
             }
         }
         echo json_encode($response);
+    }
+    
+    public function logoutExec() {
+        date_default_timezone_set("Asia/Manila");
+        $cashier_id = $this->session->userdata('CashierId');
+        $cashier_last_logout = date('Y-m-d h:i:s');
+
+        $data = array(
+            "cashier_login_status" => 0,
+            "cashier_last_logout" => $cashier_last_logout
+        );
+        $result = $this->Cashier->updateById($cashier_id, $data);
+        if ($result) {
+             $this->auth->forceLogout();
+             $response = array("logout" => true);
+        } else {
+             $response = array("logout" => false);
+        }
     }
     
 }

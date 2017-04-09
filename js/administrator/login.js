@@ -30,7 +30,7 @@ $(document).ready(function(){
                 } else {
                     usernameError.removeClass("text-red");
                     usernameError.addClass("loginAuth");
-                    usernameError.text("AUTHENTICATING . . . . .");
+                    usernameError.text("AUTHENTICATING...");
                     setTimeout(function(){ 
                         window.location.href = window.base_url + "DashboardController/index";
                     }, 2000);

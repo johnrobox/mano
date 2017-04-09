@@ -7,6 +7,11 @@ class Product extends CI_Model {
         $this->table = 'products';
     }
     
+    public function deleteById($id) {
+        $this->db->delete($this->table, array('id' => $id));
+        return ($this->db->affected_rows()) ? true : false;
+    }
+    
     public function insertData($data){
         $this->db->insert($this->table, $data);
         return ($this->db->affected_rows()) ? true : false;

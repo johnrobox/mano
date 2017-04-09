@@ -26,7 +26,7 @@ echo $this->session->flashdata("error");
             <tbody>
                 <?php foreach ($products as $product) { 
                     $id = $product->id; ?>
-                <tr>
+                <tr id="productItemTR<?php echo $id; ?>">
                     <td id="productNameTD<?php echo $id;?>"><?php echo ucwords(strtolower($product->product_name));?></td>
                     <td id="productPriceTD<?php echo $id;?>"><?php echo $product->product_price;?></td>
                     <td id="productSoldInTD<?php echo $id;?>">
@@ -80,7 +80,7 @@ echo $this->session->flashdata("error");
                         
                         $status = $product->product_status;
                         if ($status) { 
-                            $btn_type = "danger";
+                            $btn_type = "warning";
                             $btn_text = "Disable";
                             $tr_class = "bg-white";
                         } else {
@@ -93,6 +93,15 @@ echo $this->session->flashdata("error");
                             <span id="changeStatusText<?php echo $id;?>"><?php echo $btn_text;?></span>
                             <img src="<?php echo base_url();?>images/common/loading/loading_apple.gif" id="changeStatusLoading<?php echo $id;?>" style="width: 20px; height: 20px; display: none"/>
                         </button>
+                        <?php
+                        $delete_button = array(
+                            'value' => $id,
+                            'class' => 'btn btn-danger btn-xs deleteProductButton',
+                            'content' => '<i class="glyphicon glyphicon-trash"></i> Delete',
+                            'title' => 'Delete Product'
+                        );
+                        echo form_button($delete_button);
+                        ?>
                     </td>
                 </tr>
                 <?php } ?>

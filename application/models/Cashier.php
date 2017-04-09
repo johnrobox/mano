@@ -48,5 +48,19 @@ class Cashier extends CI_Model {
         $this->db->update($this->table, $data);
         return ($this->db->affected_rows() > 0 ) ? true : false;
     }
+    
+    public function checkExistWithReturn($data) {
+        $check = $this->db->get_where($this->table, $data);
+        if ($check->num_rows() > 0) {
+            $row = $check->row();
+            $result = array(
+                'valid' => true,
+                'data' => $row
+            );
+        } else {
+            $result['valid'] = false;
+        }
+        return $result;
+    }
 }
 
