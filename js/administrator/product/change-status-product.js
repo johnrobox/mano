@@ -29,13 +29,13 @@ $(document).ready(function() {
                 if (data.error == false) {
                     changeStatusButton.attr("status", productStatus);
                     if (productStatus ==1) {
-                        changeStatusButton.addClass("btn-danger");
+                        changeStatusButton.addClass("btn-warning");
                         changeStatusButton.removeClass("btn-primary");
                         changeStatusText.text("Disable");
                         productStatusTD.text("Active");
                     } else {
                         changeStatusButton.addClass("btn-primary");
-                        changeStatusButton.removeClass("btn-danger");
+                        changeStatusButton.removeClass("btn-warning");
                         changeStatusText.text("Enable");
                         productStatusTD.text(".....");
                     }

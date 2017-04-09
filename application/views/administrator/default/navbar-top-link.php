@@ -10,7 +10,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Mano Hardware</a>
+                <a class="navbar-brand" href="index.html">
+                    <img src="<?php echo base_url();?>images/common/mano/logo2.png" style="height: 50px; margin-top: -15px"/>
+                </a>
             </div>
             <!-- /.navbar-header -->
 
@@ -211,11 +213,11 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li>
-                            <a href="#UpdateProfile" data-toggle="modal">
+                            <a href="<?php echo base_url();?>index.php/administrator/AccountController/accountProfile" data-toggle="modal">
                                 <i class="fa fa-user fa-fw"></i> User Profile
                             </a>
                         </li>
-                        <li><a href="<?php echo base_url();?>admin/admin-settings"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li><a href="<?php echo base_url();?>index.php/administrator/AccountController/accountSetting"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
                         <li><a id="logout" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>

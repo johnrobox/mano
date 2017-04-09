@@ -25,7 +25,8 @@ class ProductController extends CI_Controller {
                 'product/register-product', 
                 'product/update-product',
                 'product/view-info-product',
-                'product/change-status-product'
+                'product/change-status-product',
+                'product/delete-product'
                 ),
             'page_header' => 'Products'
         );
@@ -36,6 +37,7 @@ class ProductController extends CI_Controller {
         $this->load->view('administrator/modals/product/register-product');
         $this->load->view('administrator/modals/product/update-product');
         $this->load->view("administrator/modals/product/view-info-product");
+        $this->load->view('administrator/modals/product/delete-product');
         $this->load->view("administrator/modals/my_account/change-profile");
         $this->load->view("administrator/modals/common/logout-confirmation");
         $this->load->view('administrator/default/footer-link');
@@ -200,6 +202,23 @@ class ProductController extends CI_Controller {
             $response = array(
                 'error' => true,
                 'message' => 'Cannot change status! Please try it again!'
+            );
+        }
+        echo json_encode($response);
+    }
+    
+    public function deleteProduct() {
+        $id = $this->input->post('id');
+        $result = $this->Product->deleteById($id);
+        if ($result) {
+            $response = array(
+                'delete' => true,
+                'message' => 'Product successfully deleted'
+            );
+        } else {
+            $response = array(
+                'delete' => false,
+                'message' => 'Cannot delete product! Please try it again!'
             );
         }
         echo json_encode($response);

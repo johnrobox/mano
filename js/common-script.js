@@ -19,3 +19,4 @@
             
     }
     var base_url = server_url + "index.php/administrator/";
+    var base_url_accounting = server_url + "index.php/accounting/";
