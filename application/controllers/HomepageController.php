@@ -36,4 +36,28 @@ class HomepageController extends CI_Controller {
         
     }
 
+    public function buildingmaterials() {
+        //http://localhost/mano/index.php/HomepageController/buildingmaterials
+        $this->load->view("website/Building Materials/buildingmaterials_header");
+        $this->load->view("website/Building Materials/buildingmaterials");
+        $this->load->view("website/Building Materials/buildingmaterials_footer");
+        
+    }
+
+    public function plumbing() {
+        //http://localhost/mano/index.php/HomepageController/plumbing
+        $this->load->view("website/plumbing/plumbing_header");
+        $this->load->view("website/plumbing/plumbing");
+        $this->load->view("website/plumbing/plumbing_footer");
+        
+    }
+
+    public function electrical() {
+        //http://localhost/mano/index.php/HomepageController/electrical
+        $this->load->view("website/electrical/electrical_header");
+        $this->load->view("website/electrical/electrical");
+        $this->load->view("website/electrical/electrical_footer");
+        
+    }
+
 }

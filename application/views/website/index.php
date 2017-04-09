@@ -31,10 +31,10 @@
 				        <li class="dropdown">
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
 				          <ul class="dropdown-menu">
-				            <li><a href="#">Building Materials</a></li>
+				            <li><a href="http://localhost/mano/index.php/HomepageController/buildingmaterials">Building Materials</a></li>
 				            <li><a href="http://localhost/mano/index.php/HomepageController/paints">Paints</a></li>
-				            <li><a href="#">Plumbing</a></li>
-				            <li><a href="#">Electrical</a></li>
+				            <li><a href="http://localhost/mano/index.php/HomepageController/plumbing">Plumbing</a></li>
+				            <li><a href="http://localhost/mano/index.php/HomepageController/electrical">Electrical</a></li>
 				          </ul>
 				        </li>
 				       </ul>
@@ -114,8 +114,12 @@
 						  	<a href="#">Hollow Blocks</a>
 						  </li>
 						  <br>
+						  <li>
+						  	<a href="#">Tiles</a>
+						  </li>
+						  <br>
 						   <span>
-						  	<a style="color: red;" href="#">VIEW ALL ></a>
+						  	<a style="color: red;" href="http://localhost/mano/index.php/HomepageController/buildingmaterials">VIEW ALL ></a>
 						  </span>
 
 						</ul>
@@ -156,35 +160,23 @@
 					<h3 style="text-align: center;">Plumbing</h3>
 						<ul style="list-style: none; padding: 0;">
 						  <li>
-						  	<a href="#">Air Purifier</a>
+						  	<a href="#">Pipes</a>
 						  </li>	
 						  <li>
-						  	<a href="#">Faucets</a>
+						  	<a href="#">Tanks</a>
 						  </li>	
 						  <li>
-						  	<a href="#">Fittings</a>
+						  	<a href="#">Watercloset</a>
 						  </li>	
 						  <li>
-						  	<a href="#">Showers & Bidets</a>
+						  	<a href="#">Sink, Lavatory</a>
 						  </li>	
 						  <li>
-						  	<a href="#">Water Filtration</a>
-						  </li>	
-						  <li>
-						  	<a href="#">Water Heaters</a>
-						  </li>	
-						  <li>
-						  	<a href="#">Water Storage & Pumps</a>
-						  </li>	
-						  <li>
-						  	<a href="#">Watercloset & Accessories</a>
-						  </li>	
-						  <li>
-						  	<a href="#">Sink, Lavatory & Accessories</a>
-						  </li>	
+						  	<a href="#">Fitting & Accessories</a>
+						  </li>		
 							<br>
 						   <span>
-						  	<a style="color: red;" href="#">VIEW ALL ></a>
+						  	<a style="color: red;" href="http://localhost/mano/index.php/HomepageController/plumbing">VIEW ALL ></a>
 						  </span>
 						</ul>
 						
@@ -194,32 +186,17 @@
 					<h3 style="text-align: center;">Electrical</h3>
 						<ul style="list-style: none; padding: 0;">
 						  <li>
-						  	<a href="#">Bulbs & Fluorescent Lights</a>
+						  	<a href="#">Electrical Utilities</a>
 						  </li>	
 						  <li>
-						  	<a href="#">Lighting Fixtures</a>
+						  	<a href="#">Wiring Devices and Controls</a>
 						  </li>	
 						  <li>
-						  	<a href="#">Flashlights & Batteries</a>
-						  </li>	
-						  <li>
-						  	<a href="#">Rechargeables</a>
-						  </li>	
-						  <li>
-						  	<a href="#">Power Supply</a>
-						  </li>	
-						  <li>
-						  	<a href="#">Extension Cords, Wires & Cables</a>
-						  </li>	
-						  <li>
-						  	<a href="#">Wiring Devices</a>
-						  </li>	
-						  <li>
-						  	<a href="#">Audio, Video & Telephone Supplies</a>
-						  </li>	
+						  	<a href="#">Electrical Supplies</a>
+						  </li>
 							<br>
 						   <span>
-						  	<a style="color: red;" href="#">VIEW ALL ></a>
+						  	<a style="color: red;" href="http://localhost/mano/index.php/HomepageController/electrical">VIEW ALL ></a>
 						  </span>
 						</ul>
 						
