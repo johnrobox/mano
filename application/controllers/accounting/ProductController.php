@@ -17,4 +17,5 @@ class ProductController extends CI_Controller {
         $this->load->view("accounting/default/footer");
     }
     
+    
 }

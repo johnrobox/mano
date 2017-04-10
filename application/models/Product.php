@@ -54,5 +54,10 @@ class Product extends CI_Model {
         return ($this->db->affected_rows() > 0 ) ? true : false;
     }
     
+    public function getListAPI() {
+        $query = $this->db->get($this->table);
+        return $query->result();
+    }
+    
 }
 
