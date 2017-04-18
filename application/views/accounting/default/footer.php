@@ -9,8 +9,7 @@
                </div>
             </div>
         </footer>
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="<?php echo base_url();?>js/lib/jquery.min.js"></script>
+        
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="<?php echo base_url();?>js/lib/bootstrap.min.js"></script>
         
