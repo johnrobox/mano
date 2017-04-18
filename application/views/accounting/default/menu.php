@@ -9,19 +9,9 @@
                     <li class=""><a href="<?php echo base_url();?>index.php/accounting/ProductController"><i class="glyphicon glyphicon-calendar"></i> Products</a></li>
                     <li class=""><a href="<?php echo base_url();?>index.php/accounting/ProductController"><i class="glyphicon glyphicon-calendar"></i> Sales Report</a></li>
                     <li class=""><a href="<?php echo base_url();?>index.php/accounting/ProductController"><i class="glyphicon glyphicon-calendar"></i> Statistics</a></li>
-                    <li class=""><a href="<?php echo base_url();?>index.php/accounting/ProductController"><i class="glyphicon glyphicon-calendar"></i> My Account</a></li>
-                    <li class=""><a href="<?php echo base_url();?>index.php/accounting/ProductController"><i class="glyphicon glyphicon-calendar"></i> Logout</a></li>
-                    <li class="submenu">
-                         <a href="#">
-                            <i class="glyphicon glyphicon-list"></i> Pages
-                            <span class="caret pull-right"></span>
-                         </a>
-                         <!-- Sub menu -->
-                         <ul>
-                            <li><a href="login.html">Login</a></li>
-                            <li><a href="signup.html">Signup</a></li>
-                        </ul>
-                    </li>
+                    <li class="<?php if ($page == 7) echo "current";?>"><a href="<?php echo base_url();?>index.php/accounting/MyAccountController"><i class="glyphicon glyphicon-calendar"></i> My Account</a></li>
+                    <li class=""><a class="logout"><i class="glyphicon glyphicon-calendar"></i> Logout</a></li>
+                    
                 </ul>
              </div>
 		  </div>

@@ -24,6 +24,7 @@ class DashboardController extends CI_Controller {
         $this->load->view("accounting/default/top");
         $this->load->view("accounting/default/menu");
         $this->load->view("accounting/pages/dashboard/dashboard");
+        $this->load->view("accounting/modals/my_account/logout");
         $this->load->view("accounting/default/footer");
     }
     

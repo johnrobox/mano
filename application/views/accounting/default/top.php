@@ -19,8 +19,8 @@
                                 <b class="caret"></b></a>
 	                        <ul class="dropdown-menu animated fadeInUp">
 	                          <li><a href="profile.html">Profile</a></li>
-                                  <li><a href="profile.html">Settings</a></li>
-	                          <li><a href="login.html">Logout</a></li>
+                                  <li><a href="<?php echo base_url();?>index.php/accounting/MyAccountController">Settings</a></li>
+                                  <li><a class="logout">Logout</a></li>
 	                        </ul>
 	                      </li>
 	                    </ul>

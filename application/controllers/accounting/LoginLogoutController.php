@@ -41,14 +41,20 @@ class LoginLogoutController extends CI_Controller {
                 'cashier_password' => $this->input->post('password')
             );
             $login = $this->Cashier->checkExistWithReturn($loginData);
+            $row = $login['data'];
             if ($login['valid'] == false) {
                 $response = array(
                     'error' => true,
                     'type' => 'common',
                     'message' => 'Invalid Email / Password'
                 );
+            } else if ($row->cashier_status == 0) {
+                $response = array(
+                    'error' => true,
+                    'type' => 'common',
+                    'message' => 'Your account has been disabled! Please ask the admin to active it!'
+                );
             } else {
-                $row = $login['data'];
                 $id = $row->id;
                 $login_token = $this->random->generateRandomString(88);
                 date_default_timezone_set("Asia/Manila");
@@ -92,11 +98,12 @@ class LoginLogoutController extends CI_Controller {
         );
         $result = $this->Cashier->updateById($cashier_id, $data);
         if ($result) {
-             $this->auth->forceLogout();
+             $this->cashauth->forceLogout();
              $response = array("logout" => true);
         } else {
              $response = array("logout" => false);
         }
+        echo json_encode($response);
     }
     
 }

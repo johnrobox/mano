@@ -24,8 +24,8 @@ class Cashier extends CI_Model {
         return (isset($row)) ? $row->id : false;
     }
     
-    public function getSingleData($customer_id) {
-        $this->db->where('id', $customer_id);
+    public function getSingleData($cashier_id) {
+        $this->db->where('id', $cashier_id);
         $query = $this->db->get($this->table);
         return $query->row();
     }
