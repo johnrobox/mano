@@ -22,16 +22,40 @@
                 var app = angular.module('Demo', ['AxelSoft']);
 
                 app.controller('DemoController', ['$scope','$http', function ($scope, $http) {
+                        
                     $http.get('<?php echo base_url();?>index.php/api/ProductController/getProductList')
                         .success(function(data, status, headers, config) {
-                          $scope.states = data;
+                          $scope.products = data;
                         })
                         .error(function(data, status, headers, config) {
                     });
-                    $scope.state = 'AL';
+                    $scope.productSelected = '';
+                    $scope.singleProduct = "";
+                    $scope.product_quantity = 0;
+                    $scope.addProduct = function(){
+                        console.log($scope.productQuantity);
+                        console.log($scope.productSelected.id);
+                        angular.forEach($scope.products, function(e){
+                            console.log(e);
+                            if (e.id == $scope.productSelected.id) {
+                                $scope.singleProduct = e;
+                            }
+                        });
+                    }
+                    console.log($scope.productSelected);
+                    //$scope.singleProduct = $scope.state;
+                    
                     $scope.reset = function () {
-                        $scope.state = undefined;
+                        $scope.productSelected = undefined;
                     };
+                    
+                    $scope.nums = 0;
+                    var number = 0;
+                    $scope.change = function() {
+                        number++;
+                        $("#product_quantity").val(0);
+                    }
+                    
                 }]);
                 
             })();
