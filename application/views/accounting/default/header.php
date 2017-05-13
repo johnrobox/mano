@@ -9,7 +9,17 @@
     <link href="<?php echo base_url();?>css/accounting/styles.css" rel="stylesheet">
     <link href="<?php echo base_url();?>css/common-style.css" rel="stylesheet">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="<?php echo base_url();?>js/lib/jquery.min.js"></script>
+    <script src="<?php echo base_url();?>js/lib/jquery.min.js"></script>
+    
+    <!-- Datatable assets starts here -->
+    <?php if (isset($datatable) && $datatable == true) { ?>
+    <link rel="stylesheet" href="<?php echo base_url();?>datatables/css/dataTables.bootstrap.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>datatables/css/dataTables.responsive.css">
+    <script src="<?php echo base_url();?>datatables/js/jquery.dataTables.min.js"></script>
+    <script src="<?php echo base_url();?>datatables/js/dataTables.bootstrap.min.js"></script>
+    <script src="<?php echo base_url();?>datatables/js/dataTables.responsive.js"></script>
+    <?php } ?>
+    <!-- Datatable assets ends here -->
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

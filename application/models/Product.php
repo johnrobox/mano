@@ -55,6 +55,7 @@ class Product extends CI_Model {
     }
     
     public function getListAPI() {
+        $this->db->where("product_status", 1);
         $query = $this->db->get($this->table);
         return $query->result();
     }

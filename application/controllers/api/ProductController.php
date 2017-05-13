@@ -10,6 +10,7 @@ class ProductController extends CI_Controller {
     public function getProductList() {
         $response = array();
         $products = $this->Product->getListAPI();
+        $number = 1;
         foreach($products as $product) {
             $prod_size_measure = $product->product_size_measure;
             
@@ -33,10 +34,11 @@ class ProductController extends CI_Controller {
             
             $product_complete_name = $product->product_name. " ".$prod_size_number .$size_measure;
             $response[] = array(
-                'id' => $product->id,
-                'product_name' => $product,
+                'id' => $number,
+                'product_info' => $product,
                 'product_complete_name' => $product_complete_name
             );
+            $number++;
         }
         echo json_encode($response);
     }

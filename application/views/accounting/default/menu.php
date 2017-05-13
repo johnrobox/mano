@@ -6,7 +6,7 @@
                     <!-- Main menu -->
                     <li class="<?php if ($page == 1) echo "current";?>"><a href="<?php echo base_url();?>index.php/accounting/DashboardController"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
                     <li class="<?php if ($page == 2) echo "current";?>"><a href="<?php echo base_url();?>index.php/accounting/CashierPanelController"><i class="glyphicon glyphicon-calendar"></i> Cashier Panel</a></li>
-                    <li class=""><a href="<?php echo base_url();?>index.php/accounting/ProductController"><i class="glyphicon glyphicon-calendar"></i> Products</a></li>
+                    <li class="<?php if ($page == 3) echo "current";?>"><a href="<?php echo base_url();?>index.php/accounting/ProductController"><i class="glyphicon glyphicon-calendar"></i> Products</a></li>
                     <li class=""><a href="<?php echo base_url();?>index.php/accounting/ProductController"><i class="glyphicon glyphicon-calendar"></i> Sales Report</a></li>
                     <li class=""><a href="<?php echo base_url();?>index.php/accounting/ProductController"><i class="glyphicon glyphicon-calendar"></i> Statistics</a></li>
                     <li class="<?php if ($page == 7) echo "current";?>"><a href="<?php echo base_url();?>index.php/accounting/MyAccountController"><i class="glyphicon glyphicon-calendar"></i> My Account</a></li>
